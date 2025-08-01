@@ -1,0 +1,29 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.dnasupport.org.uk/sitemap.xml
+
+# Allow crawling of all pages
+Allow: /
+Allow: /about
+Allow: /services
+Allow: /services/advocacy
+Allow: /services/care
+Allow: /services/football
+Allow: /get-support
+Allow: /partner
+Allow: /resources
+Allow: /contact
+
+# Allow access to downloadable resources
+Allow: /docs/
+
+# Standard exclusions
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.git/
+Disallow: /node_modules/
+
+# Crawl-delay (optional - be respectful to search engines)
+Crawl-delay: 1
