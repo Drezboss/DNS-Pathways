@@ -120,6 +120,22 @@ export const routes = {
         }
     }
   },
+  getHelpNow: {
+    path: '/get-help-now',
+    title: 'Get Help Now',
+    meta: {
+      title: 'Get Help Now | DNA Pathways CIC - Immediate Support for Families',
+      description: 'Need help right now? Emergency support for families in crisis. Call, message, or book a free consultation. No waiting lists.',
+      keywords: 'emergency support, crisis help, immediate assistance, family support, urgent help, Gloucestershire crisis support',
+      'og:title': 'Get Help Now | DNA Pathways CIC',
+      'og:description': 'Emergency support for families in crisis. Call, message, or book a free consultation. No waiting lists.',
+      'og:url': `${siteConfig.baseUrl}/get-help-now`,
+      'og:image': `${siteConfig.baseUrl}/images/og/support.jpg`,
+      'twitter:title': 'Get Help Now | DNA Pathways CIC',
+      'twitter:description': 'Emergency support for families in crisis. Call, message, or book a free consultation.',
+      'twitter:image': `${siteConfig.baseUrl}/images/og/support.jpg`
+    }
+  },
   getSupport: {
     path: '/get-support',
     title: 'Get Support',

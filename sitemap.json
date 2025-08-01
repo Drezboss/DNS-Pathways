@@ -88,19 +88,32 @@
         }
       ]
     },
-    {
-      "path": "/get-support",
-      "title": "Get Support",
-      "type": "static",
-      "meta": {
-        "description": "Referral form, contact routes, and self-referral process",
-        "keywords": "get help, referral form, self-referral, contact support",
-        "og:title": "Get Support | DNA Pathways CIC",
-        "og:description": "Referral form, contact routes, and self-referral process",
-        "og:url": "https://www.dnasupport.org.uk/get-support",
-        "og:image": "/og/support.jpg"
-      }
-    },
+      {
+    "path": "/get-help-now",
+    "title": "Get Help Now",
+    "type": "static",
+    "meta": {
+      "description": "Need help right now? Emergency support for families in crisis. Call, message, or book a free consultation. No waiting lists.",
+      "keywords": "emergency support, crisis help, immediate assistance, family support, urgent help, Gloucestershire crisis support",
+      "og:title": "Get Help Now | DNA Pathways CIC - Immediate Support for Families",
+      "og:description": "Emergency support for families in crisis. Call, message, or book a free consultation. No waiting lists.",
+      "og:url": "https://www.dnasupport.org.uk/get-help-now",
+      "og:image": "/images/og/support.jpg"
+    }
+  },
+  {
+    "path": "/get-support",
+    "title": "Get Support",
+    "type": "static",
+    "meta": {
+      "description": "Self-referrals welcome—no red tape, no waiting lists. Free 15-minute call. Accepting referrals from parents, schools, social workers, GPs & youth services.",
+      "keywords": "get help, referral form, self-referral, contact support, free consultation, Gloucestershire support",
+      "og:title": "Get Support | DNA Pathways CIC",
+      "og:description": "Self-referrals welcome—no red tape, no waiting lists. Free 15-minute call. Accepting referrals from parents, schools, social workers, GPs & youth services.",
+      "og:url": "https://www.dnasupport.org.uk/get-support",
+      "og:image": "/images/og/support.jpg"
+    }
+  },
     {
       "path": "/partner",
       "title": "Partner With Us",

@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | DNA Pathways CIC - Get Support Today</title>
+    <meta name="description" content="Get in touch with DNA Pathways CIC. We're here to help families in Gloucestershire with advocacy, social care, and inclusive football.">
+    
+    <style>
+        :root {
+            --trust-green: #2C5F2D;
+            --calm-blue: #4A90E2;
+            --warm-orange: #FF6B35;
+            --soft-gray: #F5F5F5;
+            --success-green: #28A745;
+            --text-dark: #1A1A1A;
+            --text-light: #666666;
+            --error-red: #DC3545;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--soft-gray);
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .header {
+            background: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--trust-green);
+            text-decoration: none;
+        }
+        
+        .form-container {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .form-header h1 {
+            color: var(--trust-green);
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-header p {
+            color: var(--text-light);
+        }
+        
+        /* Progress Indicator */
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #E9ECEF;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .step-number.active {
+            background: var(--calm-blue);
+            color: white;
+        }
+        
+        .step-number.completed {
+            background: var(--success-green);
+            color: white;
+        }
+        
+        .step-label {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            text-align: center;
+        }
+        
+        .step-label.active {
+            color: var(--calm-blue);
+            font-weight: 600;
+        }
+        
+        .progress-line {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            height: 2px;
+            background: #E9ECEF;
+            z-index: 1;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--success-green);
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+        
+        /* Form Steps */
+        .form-step {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .form-step.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #E9ECEF;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--calm-blue);
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+        }
+        
+        .form-group.error input,
+        .form-group.error select,
+        .form-group.error textarea {
+            border-color: var(--error-red);
+        }
+        
+        .error-message {
+            color: var(--error-red);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        
+        /* Option Buttons */
+        .option-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .option-btn {
+            padding: 1rem;
+            border: 2px solid #E9ECEF;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            font-size: 1rem;
+        }
+        
+        .option-btn:hover {
+            border-color: var(--calm-blue);
+            background: #F8F9FA;
+        }
+        
+        .option-btn.selected {
+            border-color: var(--calm-blue);
+            background: var(--calm-blue);
+            color: white;
+        }
+        
+        .option-btn .icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        /* Navigation Buttons */
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-secondary {
+            background: #6C757D;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #5A6268;
+        }
+        
+        .btn-primary {
+            background: var(--calm-blue);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #357ABD;
+        }
+        
+        .btn-success {
+            background: var(--success-green);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #218838;
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        /* Success Message */
+        .success-message {
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+        
+        .success-message .icon {
+            font-size: 4rem;
+            color: var(--success-green);
+            margin-bottom: 1rem;
+        }
+        
+        .success-message h2 {
+            color: var(--success-green);
+            margin-bottom: 1rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 1rem;
+            }
+            
+            .option-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        
+        /* Accessibility */
+        .btn:focus,
+        .option-btn:focus,
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: 3px solid var(--warm-orange);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo">DNA Pathways CIC</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="form-container">
+            <div class="form-header">
+                <h1>Get Support Today</h1>
+                <p>Tell us about your situation and we'll connect you with the right help.</p>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress-line">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-number active" id="step1">1</div>
+                    <div class="step-label active">What you need</div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-number" id="step2">2</div>
+                    <div class="step-label">Your details</div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-number" id="step3">3</div>
+                    <div class="step-label">Your situation</div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-number" id="step4">4</div>
+                    <div class="step-label">Submit</div>
+                </div>
+            </div>
+
+            <!-- Step 1: What you need -->
+            <div class="form-step active" id="step1-content">
+                <h2>What do you need help with?</h2>
+                <p>Choose the area you need support with:</p>
+                
+                <div class="option-buttons">
+                    <button class="option-btn" data-service="advocacy">
+                        <span class="icon">📋</span>
+                        <strong>EHCP & Benefits</strong><br>
+                        Help with education plans, benefits, tribunals
+                    </button>
+                    <button class="option-btn" data-service="care">
+                        <span class="icon">🏥</span>
+                        <strong>Social Care</strong><br>
+                        Safeguarding, family support, care navigation
+                    </button>
+                    <button class="option-btn" data-service="football">
+                        <span class="icon">⚽</span>
+                        <strong>Football Sessions</strong><br>
+                        Inclusive sport for SEND children
+                    </button>
+                    <button class="option-btn" data-service="other">
+                        <span class="icon">❓</span>
+                        <strong>Something Else</strong><br>
+                        Other support or general enquiry
+                    </button>
+                </div>
+
+                <div class="form-navigation">
+                    <div></div>
+                    <button class="btn btn-primary" id="next1" disabled>Next</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Your details -->
+            <div class="form-step" id="step2-content">
+                <h2>Your Contact Details</h2>
+                <p>How can we get in touch with you?</p>
+                
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                
+                <div class="form-group">
+                    <label for="location">Where are you based? *</label>
+                    <select id="location" name="location" required>
+                        <option value="">Select your area</option>
+                        <option value="gloucester">Gloucester</option>
+                        <option value="cheltenham">Cheltenham</option>
+                        <option value="stroud">Stroud</option>
+                        <option value="forest-dean">Forest of Dean</option>
+                        <option value="cotswolds">Cotswolds</option>
+                        <option value="tewkesbury">Tewkesbury</option>
+                        <option value="other-gloucestershire">Other Gloucestershire</option>
+                        <option value="outside-gloucestershire">Outside Gloucestershire</option>
+                    </select>
+                </div>
+
+                <div class="form-navigation">
+                    <button class="btn btn-secondary" id="prev2">Back</button>
+                    <button class="btn btn-primary" id="next2">Next</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Your situation -->
+            <div class="form-step" id="step3-content">
+                <h2>Tell us about your situation</h2>
+                <p>This helps us understand how best to help you:</p>
+                
+                <div class="form-group">
+                    <label for="urgency">How urgent is this? *</label>
+                    <select id="urgency" name="urgency" required>
+                        <option value="">Select urgency level</option>
+                        <option value="emergency">Emergency - Need help immediately</option>
+                        <option value="urgent">Urgent - Within the next few days</option>
+                        <option value="soon">Soon - Within the next few weeks</option>
+                        <option value="planning">Planning - Just exploring options</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="situation">Describe your situation *</label>
+                    <textarea id="situation" name="situation" rows="4" placeholder="Tell us what's happening and what you need help with..." required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="referral">How did you hear about us?</label>
+                    <select id="referral" name="referral">
+                        <option value="">Select option</option>
+                        <option value="search">Google search</option>
+                        <option value="social-media">Social media</option>
+                        <option value="school">School/SENCO</option>
+                        <option value="social-worker">Social worker</option>
+                        <option value="gp">GP/Health professional</option>
+                        <option value="friend">Friend or family</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-navigation">
+                    <button class="btn btn-secondary" id="prev3">Back</button>
+                    <button class="btn btn-primary" id="next3">Next</button>
+                </div>
+            </div>
+
+            <!-- Step 4: Review and submit -->
+            <div class="form-step" id="step4-content">
+                <h2>Review Your Information</h2>
+                <p>Please check your details before submitting:</p>
+                
+                <div id="review-content">
+                    <!-- Dynamically populated -->
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="consent" required>
+                        I consent to DNA Pathways CIC contacting me about my enquiry and storing my information securely *
+                    </label>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="newsletter">
+                        I'd like to receive updates about DNA Pathways CIC services (optional)
+                    </label>
+                </div>
+
+                <div class="form-navigation">
+                    <button class="btn btn-secondary" id="prev4">Back</button>
+                    <button class="btn btn-success" id="submit">Send Message</button>
+                </div>
+            </div>
+
+            <!-- Success Message -->
+            <div class="form-step" id="success-content">
+                <div class="success-message">
+                    <div class="icon">✅</div>
+                    <h2>Thank You!</h2>
+                    <p>We've received your message and will get back to you within 24 hours.</p>
+                    <p><strong>What happens next?</strong></p>
+                    <ul style="text-align: left; max-width: 400px; margin: 1rem auto;">
+                        <li>We'll review your situation</li>
+                        <li>Contact you within 24 hours</li>
+                        <li>Discuss how we can help</li>
+                        <li>Arrange next steps together</li>
+                    </ul>
+                    <a href="/" class="btn btn-primary">Return to Homepage</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let currentStep = 1;
+        let formData = {};
+        
+        // Initialize form
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get URL parameters for pre-filling
+            const urlParams = new URLSearchParams(window.location.search);
+            const issue = urlParams.get('issue');
+            if (issue) {
+                formData.service = issue;
+                // Pre-select the appropriate service button
+                const serviceBtn = document.querySelector(`[data-service="${issue}"]`);
+                if (serviceBtn) {
+                    serviceBtn.classList.add('selected');
+                    document.getElementById('next1').disabled = false;
+                }
+            }
+            
+            // Load saved data from localStorage
+            const savedData = localStorage.getItem('contactFormData');
+            if (savedData) {
+                formData = { ...formData, ...JSON.parse(savedData) };
+                populateFormFromData();
+            }
+        });
+        
+        // Service selection
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove selection from other buttons
+                document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+                // Add selection to clicked button
+                this.classList.add('selected');
+                
+                formData.service = this.dataset.service;
+                document.getElementById('next1').disabled = false;
+            });
+        });
+        
+        // Navigation buttons
+        document.getElementById('next1').addEventListener('click', () => nextStep());
+        document.getElementById('next2').addEventListener('click', () => nextStep());
+        document.getElementById('next3').addEventListener('click', () => nextStep());
+        document.getElementById('prev2').addEventListener('click', () => prevStep());
+        document.getElementById('prev3').addEventListener('click', () => prevStep());
+        document.getElementById('prev4').addEventListener('click', () => prevStep());
+        
+        // Form submission
+        document.getElementById('submit').addEventListener('click', submitForm);
+        
+        // Real-time validation
+        document.getElementById('name').addEventListener('input', validateField);
+        document.getElementById('email').addEventListener('input', validateField);
+        document.getElementById('location').addEventListener('change', validateField);
+        document.getElementById('urgency').addEventListener('change', validateField);
+        document.getElementById('situation').addEventListener('input', validateField);
+        
+        function nextStep() {
+            if (validateCurrentStep()) {
+                saveCurrentStepData();
+                currentStep++;
+                updateProgress();
+                showStep(currentStep);
+            }
+        }
+        
+        function prevStep() {
+            currentStep--;
+            updateProgress();
+            showStep(currentStep);
+        }
+        
+        function showStep(step) {
+            // Hide all steps
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            
+            // Show current step
+            document.getElementById(`step${step}-content`).classList.add('active');
+            
+            // Special handling for review step
+            if (step === 4) {
+                populateReview();
+            }
+        }
+        
+        function updateProgress() {
+            const progress = ((currentStep - 1) / 3) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            
+            // Update step indicators
+            for (let i = 1; i <= 4; i++) {
+                const stepNumber = document.getElementById(`step${i}`);
+                const stepLabel = stepNumber.nextElementSibling;
+                
+                if (i < currentStep) {
+                    stepNumber.className = 'step-number completed';
+                    stepLabel.className = 'step-label';
+                } else if (i === currentStep) {
+                    stepNumber.className = 'step-number active';
+                    stepLabel.className = 'step-label active';
+                } else {
+                    stepNumber.className = 'step-number';
+                    stepLabel.className = 'step-label';
+                }
+            }
+        }
+        
+        function validateCurrentStep() {
+            const currentStepEl = document.getElementById(`step${currentStep}-content`);
+            const requiredFields = currentStepEl.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!validateField(field)) {
+                    isValid = false;
+                }
+            });
+            
+            return isValid;
+        }
+        
+        function validateField(event) {
+            const field = event ? event.target : this;
+            const formGroup = field.closest('.form-group');
+            const errorEl = formGroup.querySelector('.error-message');
+            
+            // Remove existing error
+            formGroup.classList.remove('error');
+            if (errorEl) errorEl.remove();
+            
+            let isValid = true;
+            let errorMessage = '';
+            
+            // Validation rules
+            if (field.hasAttribute('required') && !field.value.trim()) {
+                isValid = false;
+                errorMessage = 'This field is required';
+            } else if (field.type === 'email' && field.value) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(field.value)) {
+                    isValid = false;
+                    errorMessage = 'Please enter a valid email address';
+                }
+            }
+            
+            // Show/hide error
+            if (!isValid) {
+                formGroup.classList.add('error');
+                const error = document.createElement('div');
+                error.className = 'error-message';
+                error.textContent = errorMessage;
+                formGroup.appendChild(error);
+            }
+            
+            return isValid;
+        }
+        
+        function saveCurrentStepData() {
+            const currentStepEl = document.getElementById(`step${currentStep}-content`);
+            const fields = currentStepEl.querySelectorAll('input, select, textarea');
+            
+            fields.forEach(field => {
+                if (field.type === 'checkbox') {
+                    formData[field.name] = field.checked;
+                } else {
+                    formData[field.name] = field.value;
+                }
+            });
+            
+            // Save to localStorage
+            localStorage.setItem('contactFormData', JSON.stringify(formData));
+        }
+        
+        function populateFormFromData() {
+            Object.keys(formData).forEach(key => {
+                const field = document.querySelector(`[name="${key}"]`);
+                if (field) {
+                    if (field.type === 'checkbox') {
+                        field.checked = formData[key];
+                    } else {
+                        field.value = formData[key];
+                    }
+                }
+            });
+            
+            // Handle service selection
+            if (formData.service) {
+                const serviceBtn = document.querySelector(`[data-service="${formData.service}"]`);
+                if (serviceBtn) {
+                    serviceBtn.classList.add('selected');
+                    document.getElementById('next1').disabled = false;
+                }
+            }
+        }
+        
+        function populateReview() {
+            const reviewContent = document.getElementById('review-content');
+            const serviceLabels = {
+                'advocacy': 'EHCP & Benefits',
+                'care': 'Social Care',
+                'football': 'Football Sessions',
+                'other': 'Something Else'
+            };
+            
+            reviewContent.innerHTML = `
+                <div style="background: #F8F9FA; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                    <strong>Service:</strong> ${serviceLabels[formData.service] || 'Not selected'}<br>
+                    <strong>Name:</strong> ${formData.name || 'Not provided'}<br>
+                    <strong>Email:</strong> ${formData.email || 'Not provided'}<br>
+                    <strong>Phone:</strong> ${formData.phone || 'Not provided'}<br>
+                    <strong>Location:</strong> ${formData.location || 'Not provided'}<br>
+                    <strong>Urgency:</strong> ${formData.urgency || 'Not provided'}<br>
+                    <strong>Situation:</strong> ${formData.situation || 'Not provided'}
+                </div>
+            `;
+        }
+        
+        function submitForm() {
+            if (!document.getElementById('consent').checked) {
+                alert('Please consent to us contacting you before submitting.');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = document.getElementById('submit');
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission (replace with actual submission)
+            setTimeout(() => {
+                // Clear saved data
+                localStorage.removeItem('contactFormData');
+                
+                // Show success message
+                currentStep = 5;
+                showStep(currentStep);
+                
+                // Track form submission
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'form_submit', {
+                        'event_category': 'engagement',
+                        'event_label': 'contact_form'
+                    });
+                }
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
