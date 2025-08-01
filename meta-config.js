@@ -26,16 +26,16 @@ export const routes = {
     path: '/',
     title: 'Home',
     meta: {
-      title: 'DNA Pathways CIC | Inclusive Family Support',
-      description: 'Social care, advocacy, and inclusive football for families in Gloucestershire',
-      keywords: 'family support, SEND, EHCP help, Gloucestershire advocacy',
-      'og:title': 'DNA Pathways CIC | Inclusive Family Support',
-      'og:description': 'Expert-led support for families in crisis — from social care navigation to inclusive football for children with SEND.',
+      title: 'DNA Pathways CIC | Social Care & Advocacy Support in Gloucestershire',
+      description: 'DNA Pathways provides expert social-care navigation, institutional advocacy, and inclusive football for SEND children across Gloucestershire. No waiting lists—book a free call.',
+      keywords: 'family support, SEND, EHCP help, Gloucestershire advocacy, social care, inclusive football',
+      'og:title': 'DNA Pathways CIC | Social Care & Advocacy Support in Gloucestershire',
+      'og:description': 'DNA Pathways provides expert social-care navigation, institutional advocacy, and inclusive football for SEND children across Gloucestershire. No waiting lists—book a free call.',
       'og:url': `${siteConfig.baseUrl}/`,
-      'og:image': `${siteConfig.baseUrl}/og/home.jpg`,
-      'twitter:title': 'DNA Pathways CIC | Inclusive Family Support',
-      'twitter:description': 'Expert-led support for families in crisis — from social care navigation to inclusive football for children with SEND.',
-      'twitter:image': `${siteConfig.baseUrl}/og/home.jpg`
+      'og:image': `${siteConfig.baseUrl}/images/og/home.jpg`,
+      'twitter:title': 'DNA Pathways CIC | Social Care & Advocacy Support in Gloucestershire',
+      'twitter:description': 'DNA Pathways provides expert social-care navigation, institutional advocacy, and inclusive football for SEND children across Gloucestershire. No waiting lists—book a free call.',
+      'twitter:image': `${siteConfig.baseUrl}/images/og/home.jpg`
     }
   },
   about: {
@@ -43,15 +43,15 @@ export const routes = {
     title: 'About Us',
     meta: {
       title: 'About Us | DNA Pathways CIC',
-      description: 'Our mission, lived experience, and what makes us different',
-      keywords: 'about DNA Pathways, SEND family advocacy, safeguarding experience',
+      description: 'Standing beside families in crisis with expert, compassionate support that cuts through red tape and delivers real-world outcomes.',
+      keywords: 'about DNA Pathways, SEND family advocacy, safeguarding experience, lived experience, professional support',
       'og:title': 'About Us | DNA Pathways CIC',
-      'og:description': 'Our mission, lived experience, and what makes us different',
+      'og:description': 'Standing beside families in crisis with expert, compassionate support that cuts through red tape and delivers real-world outcomes.',
       'og:url': `${siteConfig.baseUrl}/about`,
-      'og:image': `${siteConfig.baseUrl}/og/about.jpg`,
+      'og:image': `${siteConfig.baseUrl}/images/og/about.jpg`,
       'twitter:title': 'About Us | DNA Pathways CIC',
-      'twitter:description': 'Our mission, lived experience, and what makes us different',
-      'twitter:image': `${siteConfig.baseUrl}/og/about.jpg`
+      'twitter:description': 'Standing beside families in crisis with expert, compassionate support that cuts through red tape and delivers real-world outcomes.',
+      'twitter:image': `${siteConfig.baseUrl}/images/og/about.jpg`
     }
   },
   services: {
@@ -59,65 +59,65 @@ export const routes = {
     title: 'Our Services',
     meta: {
       title: 'Our Services | DNA Pathways CIC',
-      description: 'Overview of our three core service pathways',
-      keywords: 'family services, advocacy, social care, SEND football',
+      description: 'Three flexible pathways—choose one, two, or all three. Social care navigation, institutional advocacy, and inclusive football for SEND children.',
+      keywords: 'family services, advocacy, social care, SEND football, EHCP support, inclusive sport, family support',
       'og:title': 'Our Services | DNA Pathways CIC',
-      'og:description': 'Overview of our three core service pathways',
+      'og:description': 'Three flexible pathways—choose one, two, or all three. Social care navigation, institutional advocacy, and inclusive football for SEND children.',
       'og:url': `${siteConfig.baseUrl}/services`,
-      'og:image': `${siteConfig.baseUrl}/og/services.jpg`,
+      'og:image': `${siteConfig.baseUrl}/images/og/services.jpg`,
       'twitter:title': 'Our Services | DNA Pathways CIC',
-      'twitter:description': 'Overview of our three core service pathways',
-      'twitter:image': `${siteConfig.baseUrl}/og/services.jpg`
+      'twitter:description': 'Three flexible pathways—choose one, two, or all three. Social care navigation, institutional advocacy, and inclusive football for SEND children.',
+      'twitter:image': `${siteConfig.baseUrl}/images/og/services.jpg`
     },
     children: {
-      advocacy: {
-        path: '/services/advocacy',
-        title: 'Institutional Advocacy',
-        meta: {
-          title: 'Institutional Advocacy | DNA Pathways CIC',
-          description: 'Support with EHCPs, benefits, tribunals, and discrimination',
-          keywords: 'EHCP support, benefits advocacy, SEND tribunals, discrimination help',
-          'og:title': 'Institutional Advocacy | DNA Pathways CIC',
-          'og:description': 'Support with EHCPs, benefits, tribunals, and discrimination',
-          'og:url': `${siteConfig.baseUrl}/services/advocacy`,
-          'og:image': `${siteConfig.baseUrl}/og/advocacy.jpg`,
-          'twitter:title': 'Institutional Advocacy | DNA Pathways CIC',
-          'twitter:description': 'Support with EHCPs, benefits, tribunals, and discrimination',
-          'twitter:image': `${siteConfig.baseUrl}/og/advocacy.jpg`
+              advocacy: {
+          path: '/services/advocacy',
+          title: 'Institutional Advocacy',
+          meta: {
+            title: 'Institutional Advocacy | DNA Pathways CIC',
+            description: 'For education, benefits, housing, or employment system support. EHCP applications & appeals, benefits advocacy, discrimination & complaints escalation.',
+            keywords: 'EHCP support, benefits advocacy, SEND tribunals, discrimination help, institutional advocacy, PIP, DLA, UC',
+            'og:title': 'Institutional Advocacy | DNA Pathways CIC',
+            'og:description': 'For education, benefits, housing, or employment system support. EHCP applications & appeals, benefits advocacy, discrimination & complaints escalation.',
+            'og:url': `${siteConfig.baseUrl}/services/advocacy`,
+            'og:image': `${siteConfig.baseUrl}/images/og/advocacy.jpg`,
+            'twitter:title': 'Institutional Advocacy | DNA Pathways CIC',
+            'twitter:description': 'For education, benefits, housing, or employment system support. EHCP applications & appeals, benefits advocacy, discrimination & complaints escalation.',
+            'twitter:image': `${siteConfig.baseUrl}/images/og/advocacy.jpg`
+          }
+        },
+              care: {
+          path: '/services/care',
+          title: 'Social Care Pathway',
+          meta: {
+            title: 'Social Care Pathway | DNA Pathways CIC',
+            description: 'For families who need help navigating services, safeguarding, or care assessments. Care Act & Children Act navigation, safeguarding advocacy.',
+            keywords: 'social care support, safeguarding, family navigation, care pathway, Care Act, Children Act, crisis coordination',
+            'og:title': 'Social Care Pathway | DNA Pathways CIC',
+            'og:description': 'For families who need help navigating services, safeguarding, or care assessments. Care Act & Children Act navigation, safeguarding advocacy.',
+            'og:url': `${siteConfig.baseUrl}/services/care`,
+            'og:image': `${siteConfig.baseUrl}/images/og/care.jpg`,
+            'twitter:title': 'Social Care Pathway | DNA Pathways CIC',
+            'twitter:description': 'For families who need help navigating services, safeguarding, or care assessments. Care Act & Children Act navigation, safeguarding advocacy.',
+            'twitter:image': `${siteConfig.baseUrl}/images/og/care.jpg`
+          }
+        },
+              football: {
+          path: '/services/football',
+          title: 'Football & Family Pathway',
+          meta: {
+            title: 'Football & Family Pathway | DNA Pathways CIC',
+            description: 'For children with SEND to build confidence and community through inclusive sport. Inclusive football sessions, peer play for siblings, family drop-in support.',
+            keywords: 'inclusive football, SEND sport, family support, inclusive activities, adaptive sports, children football, peer play',
+            'og:title': 'Football & Family Pathway | DNA Pathways CIC',
+            'og:description': 'For children with SEND to build confidence and community through inclusive sport. Inclusive football sessions, peer play for siblings, family drop-in support.',
+            'og:url': `${siteConfig.baseUrl}/services/football`,
+            'og:image': `${siteConfig.baseUrl}/images/og/football.jpg`,
+            'twitter:title': 'Football & Family Pathway | DNA Pathways CIC',
+            'twitter:description': 'For children with SEND to build confidence and community through inclusive sport. Inclusive football sessions, peer play for siblings, family drop-in support.',
+            'twitter:image': `${siteConfig.baseUrl}/images/og/football.jpg`
+          }
         }
-      },
-      care: {
-        path: '/services/care',
-        title: 'Social Care Pathway',
-        meta: {
-          title: 'Social Care Pathway | DNA Pathways CIC',
-          description: 'Safeguarding, family support, and care navigation',
-          keywords: 'social care support, safeguarding, family navigation, care pathway',
-          'og:title': 'Social Care Pathway | DNA Pathways CIC',
-          'og:description': 'Safeguarding, family support, and care navigation',
-          'og:url': `${siteConfig.baseUrl}/services/care`,
-          'og:image': `${siteConfig.baseUrl}/og/care.jpg`,
-          'twitter:title': 'Social Care Pathway | DNA Pathways CIC',
-          'twitter:description': 'Safeguarding, family support, and care navigation',
-          'twitter:image': `${siteConfig.baseUrl}/og/care.jpg`
-        }
-      },
-      football: {
-        path: '/services/football',
-        title: 'Football & Family Pathway',
-        meta: {
-          title: 'Football & Family Pathway | DNA Pathways CIC',
-          description: 'Inclusive sport sessions for SEND children with wraparound support',
-          keywords: 'inclusive football, SEND sport, family support, inclusive activities',
-          'og:title': 'Football & Family Pathway | DNA Pathways CIC',
-          'og:description': 'Inclusive sport sessions for SEND children with wraparound support',
-          'og:url': `${siteConfig.baseUrl}/services/football`,
-          'og:image': `${siteConfig.baseUrl}/og/football.jpg`,
-          'twitter:title': 'Football & Family Pathway | DNA Pathways CIC',
-          'twitter:description': 'Inclusive sport sessions for SEND children with wraparound support',
-          'twitter:image': `${siteConfig.baseUrl}/og/football.jpg`
-        }
-      }
     }
   },
   getSupport: {
@@ -125,15 +125,15 @@ export const routes = {
     title: 'Get Support',
     meta: {
       title: 'Get Support | DNA Pathways CIC',
-      description: 'Referral form, contact routes, and self-referral process',
-      keywords: 'get help, referral form, self-referral, contact support',
+      description: 'Self-referrals welcome—no red tape, no waiting lists. Free 15-minute call. Accepting referrals from parents, schools, social workers, GPs & youth services.',
+      keywords: 'get help, referral form, self-referral, contact support, free consultation, Gloucestershire support',
       'og:title': 'Get Support | DNA Pathways CIC',
-      'og:description': 'Referral form, contact routes, and self-referral process',
+      'og:description': 'Self-referrals welcome—no red tape, no waiting lists. Free 15-minute call. Accepting referrals from parents, schools, social workers, GPs & youth services.',
       'og:url': `${siteConfig.baseUrl}/get-support`,
-      'og:image': `${siteConfig.baseUrl}/og/support.jpg`,
+      'og:image': `${siteConfig.baseUrl}/images/og/support.jpg`,
       'twitter:title': 'Get Support | DNA Pathways CIC',
-      'twitter:description': 'Referral form, contact routes, and self-referral process',
-      'twitter:image': `${siteConfig.baseUrl}/og/support.jpg`
+      'twitter:description': 'Self-referrals welcome—no red tape, no waiting lists. Free 15-minute call. Accepting referrals from parents, schools, social workers, GPs & youth services.',
+      'twitter:image': `${siteConfig.baseUrl}/images/og/support.jpg`
     }
   },
   partner: {
@@ -141,15 +141,15 @@ export const routes = {
     title: 'Partner With Us',
     meta: {
       title: 'Partner With Us | DNA Pathways CIC',
-      description: 'Opportunities for schools, NHS, and commissioners to collaborate',
-      keywords: 'partnership opportunities, schools collaboration, NHS partnership, commissioning',
+      description: 'Schools, local authorities, NHS teams—let\'s close the gaps together. Bespoke inclusion training, EHCP advocacy workshops, family-safeguarding consultancy.',
+      keywords: 'partnership opportunities, schools collaboration, NHS partnership, commissioning, inclusion training, EHCP workshops, safeguarding consultancy',
       'og:title': 'Partner With Us | DNA Pathways CIC',
-      'og:description': 'Opportunities for schools, NHS, and commissioners to collaborate',
+      'og:description': 'Schools, local authorities, NHS teams—let\'s close the gaps together. Bespoke inclusion training, EHCP advocacy workshops, family-safeguarding consultancy.',
       'og:url': `${siteConfig.baseUrl}/partner`,
-      'og:image': `${siteConfig.baseUrl}/og/partner.jpg`,
+      'og:image': `${siteConfig.baseUrl}/images/og/partner.jpg`,
       'twitter:title': 'Partner With Us | DNA Pathways CIC',
-      'twitter:description': 'Opportunities for schools, NHS, and commissioners to collaborate',
-      'twitter:image': `${siteConfig.baseUrl}/og/partner.jpg`
+      'twitter:description': 'Schools, local authorities, NHS teams—let\'s close the gaps together. Bespoke inclusion training, EHCP advocacy workshops, family-safeguarding consultancy.',
+      'twitter:image': `${siteConfig.baseUrl}/images/og/partner.jpg`
     }
   },
   resources: {
@@ -157,15 +157,15 @@ export const routes = {
     title: 'Resources & Downloads',
     meta: {
       title: 'Resources & Downloads | DNA Pathways CIC',
-      description: 'Access to our business plan, brochures, and pitch decks',
-      keywords: 'resources, downloads, business plan, brochures, pitch decks',
+      description: 'Access to our business plan, brochures, and pitch decks. Download DNA Pathways CIC resources and documentation.',
+      keywords: 'resources, downloads, business plan, brochures, pitch decks, DNA Pathways documents',
       'og:title': 'Resources & Downloads | DNA Pathways CIC',
-      'og:description': 'Access to our business plan, brochures, and pitch decks',
+      'og:description': 'Access to our business plan, brochures, and pitch decks. Download DNA Pathways CIC resources and documentation.',
       'og:url': `${siteConfig.baseUrl}/resources`,
-      'og:image': `${siteConfig.baseUrl}/og/resources.jpg`,
+      'og:image': `${siteConfig.baseUrl}/images/og/resources.jpg`,
       'twitter:title': 'Resources & Downloads | DNA Pathways CIC',
-      'twitter:description': 'Access to our business plan, brochures, and pitch decks',
-      'twitter:image': `${siteConfig.baseUrl}/og/resources.jpg`
+      'twitter:description': 'Access to our business plan, brochures, and pitch decks. Download DNA Pathways CIC resources and documentation.',
+      'twitter:image': `${siteConfig.baseUrl}/images/og/resources.jpg`
     }
   },
   contact: {
@@ -173,15 +173,15 @@ export const routes = {
     title: 'Contact Us',
     meta: {
       title: 'Contact Us | DNA Pathways CIC',
-      description: 'Email, phone, address, and contact form',
-      keywords: 'contact, email, phone, address, get in touch',
+      description: 'Get in touch with DNA Pathways CIC. Email, phone, address, and contact form available. Based in Gloucestershire.',
+      keywords: 'contact, email, phone, address, get in touch, Gloucestershire, DNA Pathways contact',
       'og:title': 'Contact Us | DNA Pathways CIC',
-      'og:description': 'Email, phone, address, and contact form',
+      'og:description': 'Get in touch with DNA Pathways CIC. Email, phone, address, and contact form available. Based in Gloucestershire.',
       'og:url': `${siteConfig.baseUrl}/contact`,
-      'og:image': `${siteConfig.baseUrl}/og/contact.jpg`,
+      'og:image': `${siteConfig.baseUrl}/images/og/contact.jpg`,
       'twitter:title': 'Contact Us | DNA Pathways CIC',
-      'twitter:description': 'Email, phone, address, and contact form',
-      'twitter:image': `${siteConfig.baseUrl}/og/contact.jpg`
+      'twitter:description': 'Get in touch with DNA Pathways CIC. Email, phone, address, and contact form available. Based in Gloucestershire.',
+      'twitter:image': `${siteConfig.baseUrl}/images/og/contact.jpg`
     }
   }
 };
