@@ -1,0 +1,226 @@
+export interface MetaData {
+  description?: string;
+  keywords?: string;
+  'og:title'?: string;
+  'og:description'?: string;
+  'og:url'?: string;
+  'og:image'?: string;
+  [key: string]: string | undefined;
+}
+
+export interface Route {
+  path: string;
+  title: string;
+  type: 'static' | 'dynamic';
+  meta: MetaData;
+  children?: Route[];
+}
+
+export interface Download {
+  path: string;
+  title: string;
+  type: 'file';
+  mimeType: string;
+}
+
+export interface SiteConfig {
+  baseUrl: string;
+  defaultMeta: {
+    language: string;
+    author: string;
+    robots: string;
+    'og:type': string;
+    'twitter:card': string;
+  };
+  routes: Route[];
+  downloads: Download[];
+}
+
+export const siteConfig: SiteConfig = {
+  baseUrl: 'https://www.dnasupport.org.uk',
+  defaultMeta: {
+    language: 'en-GB',
+    author: 'DNA Pathways CIC',
+    robots: 'index, follow',
+    'og:type': 'website',
+    'twitter:card': 'summary_large_image'
+  },
+  routes: [
+    {
+      path: '/',
+      title: 'Home',
+      type: 'static',
+      meta: {
+        description: 'Social care, advocacy, and inclusive football for families in Gloucestershire',
+        keywords: 'family support, SEND, EHCP help, Gloucestershire advocacy',
+        'og:title': 'DNA Pathways CIC | Inclusive Family Support',
+        'og:description': 'Expert-led support for families in crisis — from social care navigation to inclusive football for children with SEND.',
+        'og:url': 'https://www.dnasupport.org.uk/',
+        'og:image': '/og/home.jpg'
+      }
+    },
+    {
+      path: '/about',
+      title: 'About Us',
+      type: 'static',
+      meta: {
+        description: 'Our mission, lived experience, and what makes us different',
+        keywords: 'about DNA Pathways, SEND family advocacy, safeguarding experience',
+        'og:title': 'About Us | DNA Pathways CIC',
+        'og:description': 'Our mission, lived experience, and what makes us different',
+        'og:url': 'https://www.dnasupport.org.uk/about'
+      }
+    },
+    {
+      path: '/services',
+      title: 'Our Services',
+      type: 'static',
+      meta: {
+        description: 'Overview of our three core service pathways',
+        keywords: 'family services, advocacy, social care, SEND football',
+        'og:title': 'Our Services | DNA Pathways CIC',
+        'og:description': 'Overview of our three core service pathways',
+        'og:url': 'https://www.dnasupport.org.uk/services'
+      },
+      children: [
+        {
+          path: '/services/advocacy',
+          title: 'Institutional Advocacy',
+          type: 'static',
+          meta: {
+            description: 'Support with EHCPs, benefits, tribunals, and discrimination',
+            keywords: 'EHCP support, benefits advocacy, tribunal representation, discrimination support',
+            'og:title': 'Institutional Advocacy | DNA Pathways CIC',
+            'og:description': 'Support with EHCPs, benefits, tribunals, and discrimination',
+            'og:url': 'https://www.dnasupport.org.uk/services/advocacy'
+          }
+        },
+        {
+          path: '/services/care',
+          title: 'Social Care Pathway',
+          type: 'static',
+          meta: {
+            description: 'Safeguarding, family support, and care navigation',
+            keywords: 'safeguarding support, family care, social care navigation, crisis intervention',
+            'og:title': 'Social Care Pathway | DNA Pathways CIC',
+            'og:description': 'Safeguarding, family support, and care navigation',
+            'og:url': 'https://www.dnasupport.org.uk/services/care'
+          }
+        },
+        {
+          path: '/services/football',
+          title: 'Football & Family Pathway',
+          type: 'static',
+          meta: {
+            description: 'Inclusive sport sessions for SEND children with wraparound support',
+            keywords: 'SEND football, inclusive sports, family activities, children with disabilities',
+            'og:title': 'Football & Family Pathway | DNA Pathways CIC',
+            'og:description': 'Inclusive sport sessions for SEND children with wraparound support',
+            'og:url': 'https://www.dnasupport.org.uk/services/football'
+          }
+        }
+      ]
+    },
+    {
+      path: '/get-support',
+      title: 'Get Support',
+      type: 'static',
+      meta: {
+        description: 'Referral form, contact routes, and self-referral process',
+        keywords: 'get help, referral form, self-referral, contact support',
+        'og:title': 'Get Support | DNA Pathways CIC',
+        'og:description': 'Referral form, contact routes, and self-referral process',
+        'og:url': 'https://www.dnasupport.org.uk/get-support'
+      }
+    },
+    {
+      path: '/partner',
+      title: 'Partner With Us',
+      type: 'static',
+      meta: {
+        description: 'Opportunities for schools, NHS, and commissioners to collaborate',
+        keywords: 'partnership opportunities, schools collaboration, NHS partnership, commissioners',
+        'og:title': 'Partner With Us | DNA Pathways CIC',
+        'og:description': 'Opportunities for schools, NHS, and commissioners to collaborate',
+        'og:url': 'https://www.dnasupport.org.uk/partner'
+      }
+    },
+    {
+      path: '/resources',
+      title: 'Resources & Downloads',
+      type: 'static',
+      meta: {
+        description: 'Access to our business plan, brochures, and pitch decks',
+        keywords: 'resources, downloads, business plan, pitch decks, brochures',
+        'og:title': 'Resources & Downloads | DNA Pathways CIC',
+        'og:description': 'Access to our business plan, brochures, and pitch decks',
+        'og:url': 'https://www.dnasupport.org.uk/resources'
+      }
+    },
+    {
+      path: '/contact',
+      title: 'Contact Us',
+      type: 'static',
+      meta: {
+        description: 'Email, phone, address, and contact form',
+        keywords: 'contact DNA Pathways, email, phone, address, get in touch',
+        'og:title': 'Contact Us | DNA Pathways CIC',
+        'og:description': 'Email, phone, address, and contact form',
+        'og:url': 'https://www.dnasupport.org.uk/contact'
+      }
+    }
+  ],
+  downloads: [
+    {
+      path: '/docs/DNA_Pathways_Business_Plan_2025-2030.pdf',
+      title: 'Business Plan PDF',
+      type: 'file',
+      mimeType: 'application/pdf'
+    },
+    {
+      path: '/docs/DNA_Pathways_Pitch_Decks.pdf',
+      title: 'Pitch Decks PDF',
+      type: 'file',
+      mimeType: 'application/pdf'
+    },
+    {
+      path: '/docs/DNA_Pathways_Website_Copy.md',
+      title: 'Website Copy (Markdown)',
+      type: 'file',
+      mimeType: 'text/markdown'
+    }
+  ]
+};
+
+// Helper function to generate full meta tags for a route
+export function getMetaTags(route: Route): Record<string, string> {
+  return {
+    ...siteConfig.defaultMeta,
+    ...route.meta,
+    'og:type': siteConfig.defaultMeta['og:type'],
+    'twitter:card': siteConfig.defaultMeta['twitter:card'],
+    'og:site_name': 'DNA Pathways CIC'
+  };
+}
+
+// Helper function to get all routes (including nested)
+export function getAllRoutes(routes: Route[] = siteConfig.routes): Route[] {
+  return routes.reduce((acc: Route[], route) => {
+    acc.push(route);
+    if (route.children) {
+      acc.push(...getAllRoutes(route.children));
+    }
+    return acc;
+  }, []);
+}
+
+// Helper function to generate sitemap entries
+export function getSitemapEntries() {
+  const allRoutes = getAllRoutes();
+  return allRoutes.map(route => ({
+    url: `${siteConfig.baseUrl}${route.path}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency: route.path === '/' ? 'weekly' : 'monthly',
+    priority: route.path === '/' ? 1.0 : route.path.includes('/services') ? 0.8 : 0.7
+  }));
+}

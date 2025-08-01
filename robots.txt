@@ -1,0 +1,15 @@
+# DNA Pathways CIC - Robots.txt
+# https://www.dnasupport.org.uk
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.env
+Disallow: /config/
+
+# Sitemap location
+Sitemap: https://www.dnasupport.org.uk/sitemap.xml
+
+# Crawl-delay for politeness (optional)
+Crawl-delay: 1
