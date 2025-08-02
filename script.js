@@ -5,8 +5,23 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !isExpanded);
+            
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
+            
+            // Announce menu state to screen readers
+            const menuState = isExpanded ? 'closed' : 'opened';
+            const announcement = document.createElement('div');
+            announcement.setAttribute('aria-live', 'polite');
+            announcement.className = 'sr-only';
+            announcement.textContent = `Navigation menu ${menuState}`;
+            document.body.appendChild(announcement);
+            
+            setTimeout(() => {
+                document.body.removeChild(announcement);
+            }, 1000);
         });
         
         // Close mobile menu when clicking on a link
@@ -15,7 +30,27 @@ document.addEventListener('DOMContentLoaded', function() {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
             });
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+            }
+        });
+        
+        // Handle escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                hamburger.focus();
+            }
         });
     }
     
@@ -49,9 +84,44 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Form handling
+    // Enhanced Form handling with accessibility
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
+        // Real-time validation
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const nameError = document.getElementById('name-error');
+        const emailError = document.getElementById('email-error');
+        
+        // Name validation
+        if (nameInput && nameError) {
+            nameInput.addEventListener('blur', function() {
+                if (!this.value.trim()) {
+                    nameError.textContent = 'Name is required';
+                    this.setAttribute('aria-invalid', 'true');
+                } else {
+                    nameError.textContent = '';
+                    this.setAttribute('aria-invalid', 'false');
+                }
+            });
+        }
+        
+        // Email validation
+        if (emailInput && emailError) {
+            emailInput.addEventListener('blur', function() {
+                if (!this.value.trim()) {
+                    emailError.textContent = 'Email is required';
+                    this.setAttribute('aria-invalid', 'true');
+                } else if (!isValidEmail(this.value)) {
+                    emailError.textContent = 'Please enter a valid email address';
+                    this.setAttribute('aria-invalid', 'true');
+                } else {
+                    emailError.textContent = '';
+                    this.setAttribute('aria-invalid', 'false');
+                }
+            });
+        }
+        
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -62,20 +132,62 @@ document.addEventListener('DOMContentLoaded', function() {
             const phone = formData.get('phone');
             const message = formData.get('message');
             
-            // Basic validation
-            if (!name || !email) {
-                showNotification('Please fill in all required fields.', 'error');
+            // Enhanced validation with accessibility
+            let hasErrors = false;
+            
+            if (!name || !name.trim()) {
+                if (nameError) {
+                    nameError.textContent = 'Name is required';
+                    nameInput.setAttribute('aria-invalid', 'true');
+                }
+                hasErrors = true;
+            }
+            
+            if (!email || !email.trim()) {
+                if (emailError) {
+                    emailError.textContent = 'Email is required';
+                    emailInput.setAttribute('aria-invalid', 'true');
+                }
+                hasErrors = true;
+            } else if (!isValidEmail(email)) {
+                if (emailError) {
+                    emailError.textContent = 'Please enter a valid email address';
+                    emailInput.setAttribute('aria-invalid', 'true');
+                }
+                hasErrors = true;
+            }
+            
+            if (hasErrors) {
+                // Focus first error
+                const firstError = document.querySelector('[aria-invalid="true"]');
+                if (firstError) {
+                    firstError.focus();
+                }
+                showNotification('Please correct the errors in the form.', 'error');
                 return;
             }
             
-            if (!isValidEmail(email)) {
-                showNotification('Please enter a valid email address.', 'error');
-                return;
-            }
+            // Clear any existing errors
+            if (nameError) nameError.textContent = '';
+            if (emailError) emailError.textContent = '';
+            if (nameInput) nameInput.setAttribute('aria-invalid', 'false');
+            if (emailInput) emailInput.setAttribute('aria-invalid', 'false');
             
             // Simulate form submission (replace with actual form handling)
             showNotification('Thank you! We\'ll be in touch soon to arrange your free call.', 'success');
             this.reset();
+            
+            // Announce success to screen readers
+            const successMessage = document.createElement('div');
+            successMessage.setAttribute('role', 'alert');
+            successMessage.setAttribute('aria-live', 'polite');
+            successMessage.className = 'sr-only';
+            successMessage.textContent = 'Form submitted successfully. We will contact you soon.';
+            document.body.appendChild(successMessage);
+            
+            setTimeout(() => {
+                document.body.removeChild(successMessage);
+            }, 3000);
         });
     }
     
