@@ -282,23 +282,29 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Back to Top Button Functionality
     const backToTopButton = document.getElementById('backToTop');
+    console.log('Back to top button found:', !!backToTopButton);
     
     if (backToTopButton) {
         // Show/hide button based on scroll position
         function toggleBackToTop() {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const showThreshold = 300; // Show after 300px of scrolling
+            const showThreshold = 100; // Reduced threshold for easier testing
+            
+            console.log('Scroll position:', scrollTop, 'Threshold:', showThreshold);
             
             if (scrollTop > showThreshold) {
                 backToTopButton.classList.add('visible');
+                console.log('Back to top button shown');
             } else {
                 backToTopButton.classList.remove('visible');
+                console.log('Back to top button hidden');
             }
         }
         
         // Smooth scroll to top
         backToTopButton.addEventListener('click', function(e) {
             e.preventDefault();
+            console.log('Back to top button clicked');
             
             // Smooth scroll to top
             window.scrollTo({
@@ -328,6 +334,45 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Initial check
         toggleBackToTop();
+        
+        // Force show button for testing (remove this after testing)
+        setTimeout(() => {
+            backToTopButton.classList.add('visible');
+            console.log('Back to top button forced visible for testing');
+        }, 2000);
+    }
+    
+    // Alternative Back to Top Button (Always Visible)
+    const backToTopAlt = document.getElementById('backToTopAlt');
+    console.log('Alternative back to top button found:', !!backToTopAlt);
+    
+    if (backToTopAlt) {
+        backToTopAlt.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Alternative back to top button clicked');
+            
+            // Smooth scroll to top
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            
+            // Focus management for accessibility
+            setTimeout(() => {
+                const mainContent = document.querySelector('#main-content');
+                if (mainContent) {
+                    mainContent.focus();
+                }
+            }, 1000);
+        });
+        
+        // Keyboard support
+        backToTopAlt.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
+        });
     }
     
     console.log('DNA Pathways CIC - Navigation setup complete');
