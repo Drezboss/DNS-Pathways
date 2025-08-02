@@ -199,6 +199,10 @@ p {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
 }
 
 .hamburger span {
@@ -235,6 +239,7 @@ p {
         box-shadow: var(--shadow);
         padding: 2rem 0;
         backdrop-filter: blur(10px);
+        z-index: 999;
     }
     
     .nav-menu.active {
@@ -243,6 +248,19 @@ p {
     
     .nav-menu li {
         margin: 1rem 0;
+    }
+    
+    .nav-menu a {
+        display: block;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        color: var(--text-dark);
+        transition: var(--transition);
+    }
+    
+    .nav-menu a:hover {
+        color: var(--primary-color);
+        background-color: rgba(37, 99, 235, 0.1);
     }
     
     .cta-button {

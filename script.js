@@ -1,5 +1,8 @@
-// Mobile Navigation Toggle
+// DNA Pathways CIC - Fixed Navigation Script
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DNA Pathways CIC - Navigation initialized');
+    
+    // Mobile Navigation Toggle
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     
@@ -10,28 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
-            
-            // Announce menu state to screen readers
-            const menuState = isExpanded ? 'closed' : 'opened';
-            const announcement = document.createElement('div');
-            announcement.setAttribute('aria-live', 'polite');
-            announcement.className = 'sr-only';
-            announcement.textContent = `Navigation menu ${menuState}`;
-            document.body.appendChild(announcement);
-            
-            setTimeout(() => {
-                document.body.removeChild(announcement);
-            }, 1000);
-        });
-        
-        // Close mobile menu when clicking on a link
-        const navLinks = document.querySelectorAll('.nav-menu a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                hamburger.setAttribute('aria-expanded', 'false');
-            });
         });
         
         // Close mobile menu when clicking outside
@@ -54,37 +35,67 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Smooth scrolling for navigation links
-    const navLinks = document.querySelectorAll('a[href^="#"]');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
+    // Navigation Link Handler
+    function handleNavigationClick(e) {
+        e.preventDefault();
+        
+        // Close mobile menu if open
+        if (hamburger && navMenu) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+        }
+        
+        // Get target section
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        
+        if (targetSection) {
+            // Calculate scroll position
+            const navbarHeight = 80;
+            const targetPosition = targetSection.offsetTop - navbarHeight;
             
-            if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-            }
-        });
+            // Smooth scroll
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+            
+            // Update active state
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => link.removeAttribute('aria-current'));
+            this.setAttribute('aria-current', 'page');
+            
+            console.log('Navigated to:', targetId);
+        } else {
+            console.warn('Target section not found:', targetId);
+        }
+    }
+    
+    // Apply navigation handler to all anchor links
+    const navigationLinks = document.querySelectorAll('a[href^="#"]');
+    console.log('Found navigation links:', navigationLinks.length);
+    
+    navigationLinks.forEach((link, index) => {
+        console.log(`Link ${index + 1}:`, link.href, link.textContent);
+        link.addEventListener('click', handleNavigationClick);
     });
     
     // Navbar background on scroll
     const navbar = document.querySelector('.navbar');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
-            navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
-        } else {
-            navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
-        }
-    });
+    if (navbar) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+            }
+        });
+    }
     
-    // Enhanced Form handling with accessibility
+    // Form handling
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         // Real-time validation
@@ -173,21 +184,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (nameInput) nameInput.setAttribute('aria-invalid', 'false');
             if (emailInput) emailInput.setAttribute('aria-invalid', 'false');
             
-            // Simulate form submission (replace with actual form handling)
+            // Simulate form submission
             showNotification('Thank you! We\'ll be in touch soon to arrange your free call.', 'success');
             this.reset();
-            
-            // Announce success to screen readers
-            const successMessage = document.createElement('div');
-            successMessage.setAttribute('role', 'alert');
-            successMessage.setAttribute('aria-live', 'polite');
-            successMessage.className = 'sr-only';
-            successMessage.textContent = 'Form submitted successfully. We will contact you soon.';
-            document.body.appendChild(successMessage);
-            
-            setTimeout(() => {
-                document.body.removeChild(successMessage);
-            }, 3000);
         });
     }
     
@@ -281,93 +280,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
     
-    // Intersection Observer for animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-    
-    // Observe elements for animation
-    const animateElements = document.querySelectorAll('.about-card, .service-card, .testimonial-card');
-    animateElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-    
-    // Accessibility improvements
-    // Skip link is now in HTML for better SEO and performance
-    
-    // Add main content landmark
-    const mainContent = document.querySelector('.hero');
-    if (mainContent) {
-        mainContent.id = 'main-content';
-        mainContent.setAttribute('role', 'main');
-    }
-    
-    // Keyboard navigation for service cards
-    const serviceCards = document.querySelectorAll('.service-card');
-    serviceCards.forEach(card => {
-        card.setAttribute('tabindex', '0');
-        card.setAttribute('role', 'button');
-        card.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                const link = this.querySelector('a');
-                if (link) {
-                    link.click();
-                }
-            }
-        });
-    });
-    
-    // Lazy loading for images (if any are added later)
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.classList.remove('lazy');
-                    imageObserver.unobserve(img);
-                }
-            });
-        });
-        
-        const lazyImages = document.querySelectorAll('img[data-src]');
-        lazyImages.forEach(img => imageObserver.observe(img));
-    }
-    
-    // Performance optimization: Debounce scroll events
-    function debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
-    
-    // Apply debouncing to scroll events
-    const debouncedScrollHandler = debounce(function() {
-        // Any scroll-based functionality can go here
-    }, 10);
-    
-    window.addEventListener('scroll', debouncedScrollHandler);
-    
     // Back to Top Button Functionality
     const backToTopButton = document.getElementById('backToTop');
     
@@ -417,17 +329,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initial check
         toggleBackToTop();
     }
+    
+    console.log('DNA Pathways CIC - Navigation setup complete');
 });
-
-// Service Worker registration for PWA capabilities (optional)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js')
-            .then(function(registration) {
-                console.log('ServiceWorker registration successful');
-            })
-            .catch(function(err) {
-                console.log('ServiceWorker registration failed');
-            });
-    });
-}
