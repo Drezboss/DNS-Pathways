@@ -41,50 +41,50 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Navigation Link Handler
-    function handleNavigationClick(e) {
-        e.preventDefault();
-        
-        // Close mobile menu if open
+    // Mobile Menu Close Handler
+    function closeMobileMenu() {
         if (hamburger && navMenu) {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
             hamburger.setAttribute('aria-expanded', 'false');
         }
-        
-        // Get target section
-        const targetId = this.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        
-        if (targetSection) {
-            // Calculate scroll position
-            const navbarHeight = 80;
-            const targetPosition = targetSection.offsetTop - navbarHeight;
-            
-            // Smooth scroll
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-            
-            // Update active state
-            const navLinks = document.querySelectorAll('.nav-menu a');
-            navLinks.forEach(link => link.removeAttribute('aria-current'));
-            this.setAttribute('aria-current', 'page');
-            
-            console.log('Navigated to:', targetId);
-        } else {
-            console.warn('Target section not found:', targetId);
-        }
     }
     
-    // Apply navigation handler to all anchor links
-    const navigationLinks = document.querySelectorAll('a[href^="#"]');
+    // Handle navigation links (both anchor and page links)
+    const navigationLinks = document.querySelectorAll('.nav-menu a');
     console.log('Found navigation links:', navigationLinks.length);
     
     navigationLinks.forEach((link, index) => {
         console.log(`Link ${index + 1}:`, link.href, link.textContent);
-        link.addEventListener('click', handleNavigationClick);
+        
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            // If it's an anchor link (starts with #), handle smooth scrolling
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                closeMobileMenu();
+                
+                const targetSection = document.querySelector(href);
+                if (targetSection) {
+                    const navbarHeight = 80;
+                    const targetPosition = targetSection.offsetTop - navbarHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active state
+                    navigationLinks.forEach(link => link.removeAttribute('aria-current'));
+                    this.setAttribute('aria-current', 'page');
+                }
+            } else {
+                // If it's a page link (like services.html), just close mobile menu
+                closeMobileMenu();
+                // Let the browser handle the navigation normally
+            }
+        });
     });
     
     // Navbar background on scroll
