@@ -335,45 +335,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initial check
         toggleBackToTop();
         
-        // Force show button for testing (remove this after testing)
-        setTimeout(() => {
-            backToTopButton.classList.add('visible');
-            console.log('Back to top button forced visible for testing');
-        }, 2000);
+
     }
     
-    // Alternative Back to Top Button (Always Visible)
-    const backToTopAlt = document.getElementById('backToTopAlt');
-    console.log('Alternative back to top button found:', !!backToTopAlt);
-    
-    if (backToTopAlt) {
-        backToTopAlt.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('Alternative back to top button clicked');
-            
-            // Smooth scroll to top
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-            
-            // Focus management for accessibility
-            setTimeout(() => {
-                const mainContent = document.querySelector('#main-content');
-                if (mainContent) {
-                    mainContent.focus();
-                }
-            }, 1000);
-        });
-        
-        // Keyboard support
-        backToTopAlt.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                this.click();
-            }
-        });
-    }
+
     
     console.log('DNA Pathways CIC - Navigation setup complete');
 });
