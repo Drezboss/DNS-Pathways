@@ -194,28 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Accessibility improvements
-    // Add skip link for keyboard navigation
-    const skipLink = document.createElement('a');
-    skipLink.href = '#main-content';
-    skipLink.textContent = 'Skip to main content';
-    skipLink.style.cssText = `
-        position: absolute;
-        top: -40px;
-        left: 6px;
-        background: #2563eb;
-        color: white;
-        padding: 8px;
-        text-decoration: none;
-        border-radius: 4px;
-        z-index: 10001;
-    `;
-    skipLink.addEventListener('focus', function() {
-        this.style.top = '6px';
-    });
-    skipLink.addEventListener('blur', function() {
-        this.style.top = '-40px';
-    });
-    document.body.insertBefore(skipLink, document.body.firstChild);
+    // Skip link is now in HTML for better SEO and performance
     
     // Add main content landmark
     const mainContent = document.querySelector('.hero');
@@ -276,6 +255,56 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 10);
     
     window.addEventListener('scroll', debouncedScrollHandler);
+    
+    // Back to Top Button Functionality
+    const backToTopButton = document.getElementById('backToTop');
+    
+    if (backToTopButton) {
+        // Show/hide button based on scroll position
+        function toggleBackToTop() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const showThreshold = 300; // Show after 300px of scrolling
+            
+            if (scrollTop > showThreshold) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        }
+        
+        // Smooth scroll to top
+        backToTopButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Smooth scroll to top
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            
+            // Focus management for accessibility
+            setTimeout(() => {
+                const mainContent = document.querySelector('#main-content');
+                if (mainContent) {
+                    mainContent.focus();
+                }
+            }, 1000);
+        });
+        
+        // Keyboard support
+        backToTopButton.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
+        });
+        
+        // Listen for scroll events
+        window.addEventListener('scroll', toggleBackToTop);
+        
+        // Initial check
+        toggleBackToTop();
+    }
 });
 
 // Service Worker registration for PWA capabilities (optional)
