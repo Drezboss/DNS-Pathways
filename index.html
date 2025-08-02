@@ -12,330 +12,710 @@
     <meta property="og:url" content="http://localhost:8000/">
     <meta property="og:type" content="website">
     
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- Include UX Framework -->
     <link rel="stylesheet" href="/css/ux-framework.css">
     
     <style>
-        .demo-section {
-            background: white;
-            margin: 2rem 0;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        /* Modern CSS Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
+        :root {
+            /* Enhanced Color Palette */
+            --primary-green: #1a5f3a;
+            --primary-green-light: #2d7a4f;
+            --primary-green-dark: #0f3d26;
+            --accent-blue: #2563eb;
+            --accent-blue-light: #3b82f6;
+            --accent-orange: #ea580c;
+            --accent-orange-light: #f97316;
+            --neutral-50: #fafafa;
+            --neutral-100: #f5f5f5;
+            --neutral-200: #e5e5e5;
+            --neutral-300: #d4d4d4;
+            --neutral-400: #a3a3a3;
+            --neutral-500: #737373;
+            --neutral-600: #525252;
+            --neutral-700: #404040;
+            --neutral-800: #262626;
+            --neutral-900: #171717;
+            
+            /* Typography */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-display: 'Playfair Display', Georgia, serif;
+            
+            /* Spacing */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --space-2xl: 4rem;
+            --space-3xl: 6rem;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
         }
         
-        .feature-card {
-            background: var(--soft-gray);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--calm-blue);
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--neutral-800);
+            background-color: var(--neutral-50);
         }
         
-        .hero-demo {
-            background: linear-gradient(135deg, var(--trust-green), var(--calm-blue));
-            color: white;
-            padding: 4rem 0;
-            text-align: center;
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--neutral-900);
+            margin-bottom: var(--space-sm);
         }
         
-        .cta-buttons {
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); }
+        h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+        h4 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
+        
+        p {
+            margin-bottom: var(--space-sm);
+            color: var(--neutral-600);
+            font-size: 1.125rem;
+        }
+        
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--neutral-200);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: var(--space-sm) 0;
+        }
+        
+        .navbar-container {
             display: flex;
-            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar-brand {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .navbar-brand:hover {
+            color: var(--primary-green-dark);
+        }
+        
+        .navbar-nav {
+            display: flex;
+            list-style: none;
+            gap: var(--space-lg);
+            align-items: center;
+        }
+        
+        .navbar-nav a {
+            color: var(--neutral-700);
+            text-decoration: none;
+            font-weight: 500;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-nav a:hover {
+            color: var(--primary-green);
+            background: var(--neutral-100);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-light) 50%, var(--accent-blue) 100%);
+            color: white;
+            padding: var(--space-3xl) 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            color: white;
+            margin-bottom: var(--space-md);
+            font-weight: 700;
+        }
+        
+        .hero p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.25rem;
+            margin-bottom: var(--space-xl);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        
+        .btn-primary {
+            background: var(--accent-blue);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--accent-blue-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-emergency {
+            background: var(--accent-orange);
+            color: white;
+        }
+        
+        .btn-emergency:hover {
+            background: var(--accent-orange-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--primary-green);
+            border: 2px solid var(--primary-green);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-green);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: var(--space-md);
             justify-content: center;
-            margin: 2rem 0;
             flex-wrap: wrap;
+        }
+        
+        /* Sections */
+        .section {
+            padding: var(--space-3xl) 0;
+        }
+        
+        .section-alt {
+            background: white;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .section-header h2 {
+            margin-bottom: var(--space-md);
+        }
+        
+        .section-header p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-xl);
+            margin: var(--space-2xl) 0;
+        }
+        
+        .card {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--neutral-200);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-green), var(--accent-blue));
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .card h3 {
+            color: var(--primary-green);
+            margin-bottom: var(--space-md);
+            font-size: 1.5rem;
+        }
+        
+        .card ul {
+            margin: var(--space-md) 0;
+            padding-left: var(--space-lg);
+        }
+        
+        .card li {
+            margin-bottom: var(--space-xs);
+            color: var(--neutral-600);
+        }
+        
+        /* Testimonials */
+        .testimonial {
+            background: var(--neutral-100);
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--primary-green);
+            margin: var(--space-md) 0;
+        }
+        
+        .testimonial blockquote {
+            font-style: italic;
+            font-size: 1.125rem;
+            color: var(--neutral-700);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .testimonial cite {
+            color: var(--neutral-500);
+            font-weight: 500;
+        }
+        
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-xl);
+            margin: var(--space-2xl) 0;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: var(--space-lg);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .stat-label {
+            color: var(--neutral-600);
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--neutral-900);
+            color: white;
+            padding: var(--space-3xl) 0 var(--space-2xl);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-xl);
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: var(--space-md);
+        }
+        
+        .footer-section p,
+        .footer-section a {
+            color: var(--neutral-300);
+            text-decoration: none;
+            margin-bottom: var(--space-xs);
+            display: block;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid var(--neutral-700);
+            padding-top: var(--space-lg);
+            text-align: center;
+            color: var(--neutral-400);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar-nav {
+                display: none;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
         }
     </style>
 </head>
 <body>
-    <header class="navbar">
+    <!-- Navigation -->
+    <nav class="navbar">
         <div class="container navbar-container">
             <a href="/" class="navbar-brand">DNA Pathways CIC</a>
-            <nav>
-                <ul class="navbar-nav">
-                    <li><a href="/get-help-now.html">Get Help Now</a></li>
-                    <li><a href="/contact-form.html">Contact Form</a></li>
-                    <li><a href="/css/ux-framework.css">CSS Framework</a></li>
-                    <li><a href="/js/ux-analytics.js">Analytics</a></li>
-                </ul>
-            </nav>
+            <ul class="navbar-nav">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#support">Get Support</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="/get-help-now.html" class="btn btn-emergency">🚨 Emergency</a></li>
+            </ul>
         </div>
-    </header>
+    </nav>
 
-    <main>
-        <section class="hero-demo">
-            <div class="container">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in-up">
                 <h1>No More Falling Through the Cracks</h1>
                 <p>Family-centred support when the system fails—expert advocacy, care navigation, and inclusive football for children with additional needs.</p>
-                
-                <div class="cta-buttons">
+                <div class="btn-group">
                     <a href="/get-help-now.html" class="btn btn-emergency">🚨 Get Help Now</a>
-                    <a href="/contact-form.html" class="btn btn-primary">📅 Book a Free Intro Call</a>
+                    <a href="/contact-form.html" class="btn btn-primary">📅 Book Free Call</a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="container">
-            <div class="demo-section">
-                <h2>👥 About DNA Pathways CIC</h2>
-                <p>We're a husband-and-wife duo with 30+ years in social care, safeguarding, and institutional advocacy—plus first-hand experience as parents of a disabled child. We know the frustration of feeling invisible to "the system," and we built DNA Pathways to change that.</p>
-                
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <h3>🎯 Our Mission</h3>
-                        <p>Standing beside families in crisis with expert, compassionate support that cuts through red tape and delivers real-world outcomes.</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h3>💪 What Makes Us Different</h3>
-                        <ul style="margin: 1rem 0; padding-left: 1.5rem;">
-                            <li>Professional insight + lived experience</li>
-                            <li>We work with families, not just for them</li>
-                            <li>Casework, coaching, and community in one integrated model</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h3>📊 Our Impact</h3>
-                        <div style="text-align: center; margin: 1rem 0;">
-                            <div style="font-size: 2rem; font-weight: bold; color: var(--trust-green);">500+</div>
-                            <div>Families Helped</div>
-                        </div>
-                        <div style="text-align: center; margin: 1rem 0;">
-                            <div style="font-size: 2rem; font-weight: bold; color: var(--trust-green);">95%</div>
-                            <div>Success Rate</div>
-                        </div>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h3>📍 Service Area</h3>
-                        <p>Based in Gloucestershire, supporting families countywide including Gloucester, Cheltenham, Stroud, Forest of Dean, Cotswolds, and Tewkesbury.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="demo-section">
-                <h2>🧭 Our Services</h2>
-                <p>We offer three flexible pathways—choose one, two, or all three.</p>
-                
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <h3>📋 Institutional Advocacy</h3>
-                        <p><strong>For education, benefits, housing, or employment system support.</strong></p>
-                        <ul style="margin: 1rem 0; padding-left: 1.5rem;">
-                            <li>EHCP applications & appeals</li>
-                            <li>Benefits (PIP, DLA, UC) advocacy</li>
-                            <li>Discrimination & complaints escalation</li>
-                            <li>Tribunal preparation & documentation</li>
-                        </ul>
-                        <blockquote style="background: var(--soft-gray); padding: 1rem; border-left: 4px solid var(--calm-blue); margin: 1rem 0; font-style: italic;">
-                            "We won our appeal because of them. I can finally breathe."
-                        </blockquote>
-                        <a href="/contact-form.html?service=advocacy" class="btn btn-primary">Get Advocacy Help</a>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h3>🏥 Social Care Pathway</h3>
-                        <p><strong>For families who need help navigating services, safeguarding, or care assessments.</strong></p>
-                        <ul style="margin: 1rem 0; padding-left: 1.5rem;">
-                            <li>Care Act & Children Act navigation</li>
-                            <li>Safeguarding advocacy</li>
-                            <li>Social-worker meeting prep</li>
-                            <li>Crisis coordination</li>
-                        </ul>
-                        <blockquote style="background: var(--soft-gray); padding: 1rem; border-left: 4px solid var(--calm-blue); margin: 1rem 0; font-style: italic;">
-                            "We were finally listened to—and things started moving fast."
-                        </blockquote>
-                        <a href="/contact-form.html?service=care" class="btn btn-primary">Book Social Care Support</a>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h3>⚽ Football & Family Pathway</h3>
-                        <p><strong>For children with SEND to build confidence and community through inclusive sport.</strong></p>
-                        <ul style="margin: 1rem 0; padding-left: 1.5rem;">
-                            <li>Inclusive football sessions</li>
-                            <li>Peer play for siblings</li>
-                            <li>Family drop-in support</li>
-                            <li>School-holiday clubs</li>
-                        </ul>
-                        <blockquote style="background: var(--soft-gray); padding: 1rem; border-left: 4px solid var(--calm-blue); margin: 1rem 0; font-style: italic;">
-                            "My son is included for the first time in his life."
-                        </blockquote>
-                        <a href="/contact-form.html?service=football" class="btn btn-primary">See Football Timetable</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="demo-section">
-                <h2>📞 Get Support</h2>
-                <p>We accept referrals from parents & carers, schools & SENCOs, social workers, GPs & youth services. Self-referrals welcome—no red tape, no waiting lists.</p>
-                
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <h3>🚨 Emergency Support</h3>
-                        <p>Child excluded? Benefits stopped? Care plan ignored? We can help immediately.</p>
-                        <a href="/get-help-now.html" class="btn btn-emergency">Call Now</a>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h3>⚡ Quick Assessment</h3>
-                        <p>Tell us your situation in 2 minutes and we'll connect you with the right help.</p>
-                        <a href="/contact-form.html" class="btn btn-primary">Start Assessment</a>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h3>📅 Book Free Call</h3>
-                        <p>15-minute consultation, no pressure. We'll listen and guide you.</p>
-                        <a href="/contact-form.html" class="btn btn-secondary">Book Now</a>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h3>📧 Contact Information</h3>
-                        <p><strong>Email:</strong> support@dnasupport.org.uk<br>
-                        <strong>Location:</strong> Gloucestershire (countywide)<br>
-                        <strong>Response Time:</strong> Within 24 hours</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="demo-section">
-                <h2>💼 Partner With Us</h2>
-                <p>Schools, local authorities, NHS teams—let's close the gaps together.</p>
-                
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <h3>🏫 Schools & SENCOs</h3>
-                        <p>Bespoke inclusion training, EHCP advocacy workshops, and family support coordination.</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h3>🏥 NHS & Health Services</h3>
-                        <p>Family-safeguarding consultancy, trauma-informed support, and care pathway navigation.</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h3>🏛️ Local Authorities</h3>
-                        <p>Commissioning support, service gap analysis, and partnership development.</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h3>📄 Resources Available</h3>
-                        <p>Service brochures, pitch decks, business plans, and training materials for professional partners.</p>
-                        <a href="/contact-form.html?service=partnership" class="btn btn-secondary">Request Resources</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="demo-section">
-                <h2>📣 What Families Say</h2>
-                <p>Real testimonials from families we've helped across Gloucestershire:</p>
-                
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <blockquote style="background: var(--soft-gray); padding: 1.5rem; border-left: 4px solid var(--trust-green); margin: 1rem 0; font-style: italic; font-size: 1.1rem;">
-                            "DNA Pathways did more in 2 weeks than the council did in 2 years."
-                        </blockquote>
-                        <p style="text-align: right; color: var(--text-light);">— Parent, Forest of Dean</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <blockquote style="background: var(--soft-gray); padding: 1.5rem; border-left: 4px solid var(--trust-green); margin: 1rem 0; font-style: italic; font-size: 1.1rem;">
-                            "My son's football sessions are the highlight of his week. He feels safe, happy, and included."
-                        </blockquote>
-                        <p style="text-align: right; color: var(--text-light);">— Parent, Cheltenham</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <blockquote style="background: var(--soft-gray); padding: 1.5rem; border-left: 4px solid var(--trust-green); margin: 1rem 0; font-style: italic; font-size: 1.1rem;">
-                            "We were finally listened to—and things started moving fast."
-                        </blockquote>
-                        <p style="text-align: right; color: var(--text-light);">— Parent, Gloucester</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <blockquote style="background: var(--soft-gray); padding: 1.5rem; border-left: 4px solid var(--trust-green); margin: 1rem 0; font-style: italic; font-size: 1.1rem;">
-                            "We won our appeal because of them. I can finally breathe."
-                        </blockquote>
-                        <p style="text-align: right; color: var(--text-light);">— Parent, Stroud</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="demo-section">
-                <h2>🎯 Our Commitment</h2>
-                <p>We're committed to providing expert, compassionate support that makes a real difference:</p>
-                
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <h3>⚡ No Waiting Lists</h3>
-                        <p>We respond to all enquiries within 24 hours and can often start helping immediately.</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h3>🤝 Lived Experience</h3>
-                        <p>We understand because we've been there. Our team includes parents of disabled children.</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h3>🔒 Safeguarding First</h3>
-                        <p>All our team members are DBS checked and fully insured. Your family's safety is our priority.</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h3>📈 Proven Results</h3>
-                        <p>95% success rate in helping families achieve their goals and navigate complex systems.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer style="background: var(--text-dark); color: white; padding: 2rem 0; margin-top: 4rem;">
+    <!-- About Section -->
+    <section class="section" id="about">
         <div class="container">
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <h3 style="color: white; margin-bottom: 1rem;">DNA Pathways CIC</h3>
-                <p style="margin-bottom: 0.5rem;">Community Interest Company (Reg No: #######) | Based in Gloucestershire, UK</p>
-                <p style="margin-bottom: 1rem;"><strong>Our Values:</strong> Safeguarding-first | Lived Experience-led | Fully Insured & DBS Checked</p>
+            <div class="section-header fade-in-up">
+                <h2>About DNA Pathways CIC</h2>
+                <p>We're a husband-and-wife duo with 30+ years in social care, safeguarding, and institutional advocacy—plus first-hand experience as parents of a disabled child.</p>
             </div>
             
-            <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
-                <a href="/get-help-now.html" class="btn btn-emergency">🚨 Get Help Now</a>
-                <a href="/contact-form.html" class="btn btn-primary">📞 Contact Us</a>
-                <a href="/resources" class="btn btn-secondary">📄 Resources</a>
-                <a href="/partner" class="btn btn-secondary">🤝 Partner With Us</a>
+            <div class="stats-grid">
+                <div class="stat-card fade-in-up">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Families Helped</div>
+                </div>
+                <div class="stat-card fade-in-up">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+                <div class="stat-card fade-in-up">
+                    <div class="stat-number">30+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-card fade-in-up">
+                    <div class="stat-number">24h</div>
+                    <div class="stat-label">Response Time</div>
+                </div>
             </div>
             
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <p style="margin-bottom: 0.5rem;"><strong>Service Area:</strong> Gloucestershire countywide including Gloucester, Cheltenham, Stroud, Forest of Dean, Cotswolds, and Tewkesbury</p>
-                <p style="margin-bottom: 1rem;"><strong>Contact:</strong> support@dnasupport.org.uk | Response within 24 hours</p>
+            <div class="card-grid">
+                <div class="card fade-in-up">
+                    <h3>🎯 Our Mission</h3>
+                    <p>Standing beside families in crisis with expert, compassionate support that cuts through red tape and delivers real-world outcomes.</p>
+                </div>
+                
+                <div class="card fade-in-up">
+                    <h3>💪 What Makes Us Different</h3>
+                    <ul>
+                        <li>Professional insight + lived experience</li>
+                        <li>We work with families, not just for them</li>
+                        <li>Casework, coaching, and community in one integrated model</li>
+                    </ul>
+                </div>
+                
+                <div class="card fade-in-up">
+                    <h3>📍 Service Area</h3>
+                    <p>Based in Gloucestershire, supporting families countywide including Gloucester, Cheltenham, Stroud, Forest of Dean, Cotswolds, and Tewkesbury.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section section-alt" id="services">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>Our Services</h2>
+                <p>We offer three flexible pathways—choose one, two, or all three.</p>
             </div>
             
-            <div style="text-align: center; border-top: 1px solid #444; padding-top: 1rem;">
-                <a href="#" style="margin: 0 1rem; color: var(--calm-blue); text-decoration: none;">📘 Facebook</a>
-                <a href="#" style="margin: 0 1rem; color: var(--calm-blue); text-decoration: none;">📷 Instagram</a>
-                <a href="mailto:support@dnasupport.org.uk" style="margin: 0 1rem; color: var(--calm-blue); text-decoration: none;">✉️ Email Us</a>
+            <div class="card-grid">
+                <div class="card fade-in-up">
+                    <h3>📋 Institutional Advocacy</h3>
+                    <p><strong>For education, benefits, housing, or employment system support.</strong></p>
+                    <ul>
+                        <li>EHCP applications & appeals</li>
+                        <li>Benefits (PIP, DLA, UC) advocacy</li>
+                        <li>Discrimination & complaints escalation</li>
+                        <li>Tribunal preparation & documentation</li>
+                    </ul>
+                    <div class="testimonial">
+                        <blockquote>"We won our appeal because of them. I can finally breathe."</blockquote>
+                        <cite>— Parent, Stroud</cite>
+                    </div>
+                    <a href="/contact-form.html?service=advocacy" class="btn btn-primary">Get Advocacy Help</a>
+                </div>
+                
+                <div class="card fade-in-up">
+                    <h3>🏥 Social Care Pathway</h3>
+                    <p><strong>For families who need help navigating services, safeguarding, or care assessments.</strong></p>
+                    <ul>
+                        <li>Care Act & Children Act navigation</li>
+                        <li>Safeguarding advocacy</li>
+                        <li>Social-worker meeting prep</li>
+                        <li>Crisis coordination</li>
+                    </ul>
+                    <div class="testimonial">
+                        <blockquote>"We were finally listened to—and things started moving fast."</blockquote>
+                        <cite>— Parent, Gloucester</cite>
+                    </div>
+                    <a href="/contact-form.html?service=care" class="btn btn-primary">Book Social Care Support</a>
+                </div>
+                
+                <div class="card fade-in-up">
+                    <h3>⚽ Football & Family Pathway</h3>
+                    <p><strong>For children with SEND to build confidence and community through inclusive sport.</strong></p>
+                    <ul>
+                        <li>Inclusive football sessions</li>
+                        <li>Peer play for siblings</li>
+                        <li>Family drop-in support</li>
+                        <li>School-holiday clubs</li>
+                    </ul>
+                    <div class="testimonial">
+                        <blockquote>"My son is included for the first time in his life."</blockquote>
+                        <cite>— Parent, Cheltenham</cite>
+                    </div>
+                    <a href="/contact-form.html?service=football" class="btn btn-primary">See Football Timetable</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Support Section -->
+    <section class="section" id="support">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>Get Support</h2>
+                <p>We accept referrals from parents & carers, schools & SENCOs, social workers, GPs & youth services. Self-referrals welcome—no red tape, no waiting lists.</p>
+            </div>
+            
+            <div class="card-grid">
+                <div class="card fade-in-up">
+                    <h3>🚨 Emergency Support</h3>
+                    <p>Child excluded? Benefits stopped? Care plan ignored? We can help immediately.</p>
+                    <a href="/get-help-now.html" class="btn btn-emergency">Call Now</a>
+                </div>
+                
+                <div class="card fade-in-up">
+                    <h3>⚡ Quick Assessment</h3>
+                    <p>Tell us your situation in 2 minutes and we'll connect you with the right help.</p>
+                    <a href="/contact-form.html" class="btn btn-primary">Start Assessment</a>
+                </div>
+                
+                <div class="card fade-in-up">
+                    <h3>📅 Book Free Call</h3>
+                    <p>15-minute consultation, no pressure. We'll listen and guide you.</p>
+                    <a href="/contact-form.html" class="btn btn-secondary">Book Now</a>
+                </div>
+                
+                <div class="card fade-in-up">
+                    <h3>📧 Contact Information</h3>
+                    <p><strong>Email:</strong> support@dnasupport.org.uk</p>
+                    <p><strong>Location:</strong> Gloucestershire (countywide)</p>
+                    <p><strong>Response Time:</strong> Within 24 hours</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>What Families Say</h2>
+                <p>Real testimonials from families we've helped across Gloucestershire</p>
+            </div>
+            
+            <div class="card-grid">
+                <div class="card fade-in-up">
+                    <div class="testimonial">
+                        <blockquote>"DNA Pathways did more in 2 weeks than the council did in 2 years."</blockquote>
+                        <cite>— Parent, Forest of Dean</cite>
+                    </div>
+                </div>
+                
+                <div class="card fade-in-up">
+                    <div class="testimonial">
+                        <blockquote>"My son's football sessions are the highlight of his week. He feels safe, happy, and included."</blockquote>
+                        <cite>— Parent, Cheltenham</cite>
+                    </div>
+                </div>
+                
+                <div class="card fade-in-up">
+                    <div class="testimonial">
+                        <blockquote>"We were finally listened to—and things started moving fast."</blockquote>
+                        <cite>— Parent, Gloucester</cite>
+                    </div>
+                </div>
+                
+                <div class="card fade-in-up">
+                    <div class="testimonial">
+                        <blockquote>"We won our appeal because of them. I can finally breathe."</blockquote>
+                        <cite>— Parent, Stroud</cite>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>DNA Pathways CIC</h3>
+                    <p>Community Interest Company (Reg No: #######)</p>
+                    <p>Based in Gloucestershire, UK</p>
+                    <p><strong>Our Values:</strong> Safeguarding-first | Lived Experience-led | Fully Insured & DBS Checked</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="/get-help-now.html">🚨 Get Help Now</a>
+                    <a href="/contact-form.html">📞 Contact Us</a>
+                    <a href="/resources">📄 Resources</a>
+                    <a href="/partner">🤝 Partner With Us</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Service Area</h3>
+                    <p>Gloucestershire countywide including:</p>
+                    <p>Gloucester, Cheltenham, Stroud, Forest of Dean, Cotswolds, and Tewkesbury</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><strong>Email:</strong> support@dnasupport.org.uk</p>
+                    <p><strong>Response Time:</strong> Within 24 hours</p>
+                    <div style="margin-top: var(--space-md);">
+                        <a href="#" style="margin-right: var(--space-md);">📘 Facebook</a>
+                        <a href="#" style="margin-right: var(--space-md);">📷 Instagram</a>
+                        <a href="mailto:support@dnasupport.org.uk">✉️ Email Us</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 DNA Pathways CIC. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Include Analytics -->
+    <!-- Analytics -->
     <script src="/js/ux-analytics.js"></script>
-    
-    <script>
-        // Track page view
-        if (window.uxAnalytics) {
-            window.uxAnalytics.trackEvent('demo_page_view', {
-                page: 'homepage',
-                features: ['crisis_response', 'smart_forms', 'css_framework', 'analytics']
-            });
-        }
-    </script>
 </body>
 </html>
