@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Menu Test - DNA Pathways CIC</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .test-info {
+            background: #f0f8ff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 4px solid #2563eb;
+        }
+        .test-info h3 {
+            margin-top: 0;
+            color: #2563eb;
+        }
+        .test-info ul {
+            margin-bottom: 0;
+        }
+        .test-info li {
+            margin-bottom: 8px;
+        }
+        .debug-info {
+            background: #fff3cd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            font-family: monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>DNA Pathways CIC</h2>
+            </div>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="#home" role="menuitem" aria-current="page">Home</a></li>
+                <li role="none"><a href="#services" role="menuitem">Services</a></li>
+                <li role="none"><a href="#holiday-caravan" role="menuitem">Holiday Caravan</a></li>
+                <li role="none"><a href="#about" role="menuitem">About</a></li>
+                <li role="none"><a href="#get-support" role="menuitem">Get Support</a></li>
+                <li role="none"><a href="#resources" role="menuitem">Resources</a></li>
+                <li role="none"><a href="#contact" class="cta-button" role="menuitem">Contact</a></li>
+            </ul>
+            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                <span class="sr-only">Menu</span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="test-info">
+            <h3>🧪 Mobile Menu Test Page</h3>
+            <p><strong>Instructions:</strong></p>
+            <ul>
+                <li><strong>Desktop:</strong> You should see the full navigation menu</li>
+                <li><strong>Mobile (resize browser or use dev tools):</strong> You should see a hamburger button (☰) in the top right</li>
+                <li><strong>Click the hamburger:</strong> Menu should slide in from the left</li>
+                <li><strong>Check console:</strong> Open browser dev tools (F12) to see debug messages</li>
+            </ul>
+        </div>
+
+        <div class="debug-info">
+            <strong>Debug Info:</strong><br>
+            Screen width: <span id="screen-width"></span><br>
+            Hamburger visible: <span id="hamburger-visible"></span><br>
+            Menu state: <span id="menu-state"></span>
+        </div>
+
+        <h1>Test Content</h1>
+        <p>This is a test page to verify the mobile menu functionality. Resize your browser window to see the hamburger menu appear on mobile devices.</p>
+        
+        <h2>How to Test:</h2>
+        <ol>
+            <li>Open browser developer tools (F12)</li>
+            <li>Go to the "Console" tab</li>
+            <li>Resize your browser window to be narrow (less than 768px wide)</li>
+            <li>You should see the hamburger button appear</li>
+            <li>Click the hamburger button</li>
+            <li>Check the console for debug messages</li>
+            <li>The menu should slide in from the left</li>
+        </ol>
+
+        <h2>Expected Behavior:</h2>
+        <ul>
+            <li>✅ Hamburger button appears on mobile (≤768px)</li>
+            <li>✅ Clicking hamburger toggles menu</li>
+            <li>✅ Menu slides in from left</li>
+            <li>✅ Menu items are clickable</li>
+            <li>✅ Menu closes when clicking outside</li>
+            <li>✅ Menu closes with Escape key</li>
+        </ul>
+
+        <div style="height: 1000px; background: linear-gradient(45deg, #f0f0f0 25%, transparent 25%), linear-gradient(-45deg, #f0f0f0 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f0f0f0 75%), linear-gradient(-45deg, transparent 75%, #f0f0f0 75%); background-size: 20px 20px; background-position: 0 0, 0 10px, 10px -10px, -10px 0px; margin: 20px 0; padding: 20px; text-align: center;">
+            <p><strong>Scroll down to test back-to-top button</strong></p>
+            <p>This tall section helps test the back-to-top functionality</p>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top" title="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+    <script>
+        // Additional debugging
+        function updateDebugInfo() {
+            document.getElementById('screen-width').textContent = window.innerWidth + 'px';
+            document.getElementById('hamburger-visible').textContent = window.innerWidth <= 768 ? 'Yes' : 'No';
+            document.getElementById('menu-state').textContent = document.querySelector('.nav-menu').classList.contains('active') ? 'Open' : 'Closed';
+        }
+
+        window.addEventListener('resize', updateDebugInfo);
+        window.addEventListener('load', updateDebugInfo);
+        
+        // Update debug info when menu state changes
+        const observer = new MutationObserver(updateDebugInfo);
+        observer.observe(document.querySelector('.nav-menu'), { attributes: true, attributeFilter: ['class'] });
+    </script>
+</body>
+</html>

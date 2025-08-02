@@ -201,8 +201,14 @@ p {
     cursor: pointer;
     background: none;
     border: none;
-    padding: 0;
+    padding: 8px;
     margin: 0;
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.hamburger:hover {
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .hamburger span {

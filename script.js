@@ -6,13 +6,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     
+    console.log('Hamburger button found:', !!hamburger);
+    console.log('Nav menu found:', !!navMenu);
+    
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', function() {
+            console.log('Hamburger clicked!');
             const isExpanded = this.getAttribute('aria-expanded') === 'true';
             this.setAttribute('aria-expanded', !isExpanded);
             
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
+            
+            console.log('Menu active:', navMenu.classList.contains('active'));
         });
         
         // Close mobile menu when clicking outside
