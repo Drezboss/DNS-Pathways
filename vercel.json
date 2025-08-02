@@ -8,7 +8,31 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/services",
+      "dest": "/services.html"
+    },
+    {
+      "src": "/holiday-caravan",
+      "dest": "/holiday-caravan.html"
+    },
+    {
+      "src": "/about",
+      "dest": "/about.html"
+    },
+    {
+      "src": "/get-support",
+      "dest": "/get-support.html"
+    },
+    {
+      "src": "/resources",
+      "dest": "/resources.html"
+    },
+    {
+      "src": "/contact",
+      "dest": "/contact.html"
+    },
+    {
+      "src": "/",
       "dest": "/index.html"
     }
   ],
