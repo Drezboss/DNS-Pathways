@@ -3,39 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Menu Test - DNA Pathways CIC</title>
+    <title>DNA Pathways CIC - Mobile Menu Test</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .test-info {
-            background: #f0f8ff;
+        .debug-info {
+            background: #f0f0f0;
             padding: 20px;
             margin: 20px 0;
             border-radius: 8px;
-            border-left: 4px solid #2563eb;
-        }
-        .test-info h3 {
-            margin-top: 0;
-            color: #2563eb;
-        }
-        .test-info ul {
-            margin-bottom: 0;
-        }
-        .test-info li {
-            margin-bottom: 8px;
-        }
-        .debug-info {
-            background: #fff3cd;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 8px;
-            border-left: 4px solid #ffc107;
             font-family: monospace;
             font-size: 14px;
+        }
+        .debug-info h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .debug-info p {
+            margin: 5px 0;
+            color: #666;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-success { background-color: #4CAF50; }
+        .status-error { background-color: #f44336; }
+        .status-warning { background-color: #ff9800; }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-section h3 {
+            color: #2563eb;
+            margin-bottom: 15px;
+        }
+        .test-instructions {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        .test-instructions ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .test-instructions li {
+            margin: 5px 0;
+        }
+        .visual-test {
+            background: #f5f5f5;
+            padding: 20px;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .visual-test h4 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .test-button {
+            background: #2563eb;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #1d4ed8;
         }
     </style>
 </head>
 <body>
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Navigation -->
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
@@ -60,75 +111,132 @@
         </div>
     </nav>
 
-    <div class="container">
-        <div class="test-info">
-            <h3>🧪 Mobile Menu Test Page</h3>
-            <p><strong>Instructions:</strong></p>
-            <ul>
-                <li><strong>Desktop:</strong> You should see the full navigation menu</li>
-                <li><strong>Mobile (resize browser or use dev tools):</strong> You should see a hamburger button (☰) in the top right</li>
-                <li><strong>Click the hamburger:</strong> Menu should slide in from the left</li>
-                <li><strong>Check console:</strong> Open browser dev tools (F12) to see debug messages</li>
-            </ul>
+    <main id="main-content">
+        <div class="container">
+            <h1>Mobile Menu Test Page</h1>
+            <p>This page is designed to test the mobile navigation functionality on DNA Pathways CIC website.</p>
+
+            <!-- Debug Information -->
+            <div class="debug-info">
+                <h3>🔍 Real-time Debug Information</h3>
+                <p><span class="status-indicator status-success"></span>Screen Width: <span id="screen-width">Loading...</span></p>
+                <p><span class="status-indicator status-success"></span>Hamburger Button Visible: <span id="hamburger-visible">Loading...</span></p>
+                <p><span class="status-indicator status-success"></span>Menu State: <span id="menu-state">Loading...</span></p>
+                <p><span class="status-indicator status-success"></span>Navigation Links Found: <span id="nav-links-count">Loading...</span></p>
+                <p><span class="status-indicator status-success"></span>JavaScript Loaded: <span id="js-status">Loading...</span></p>
+            </div>
+
+            <!-- Test Instructions -->
+            <div class="test-section">
+                <h3>📱 Mobile Menu Test Instructions</h3>
+                <div class="test-instructions">
+                    <h4>Step-by-Step Testing:</h4>
+                    <ol>
+                        <li><strong>Resize your browser</strong> to mobile width (≤768px) or use browser dev tools</li>
+                        <li><strong>Look for the hamburger button</strong> (☰) in the top-right corner of the navigation</li>
+                        <li><strong>Click the hamburger button</strong> - the menu should slide in from the left</li>
+                        <li><strong>Verify all menu items appear:</strong> Home, Services, Holiday Caravan, About, Get Support, Resources, Contact</li>
+                        <li><strong>Click any menu item</strong> - it should navigate to that page and close the menu</li>
+                        <li><strong>Test menu closing:</strong> Click outside the menu or press Escape key</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Visual Test -->
+            <div class="visual-test">
+                <h4>🎯 Visual Test Area</h4>
+                <p>If you can see this section, the page is loading correctly.</p>
+                <p>The hamburger button should be visible in the top-right corner on mobile devices.</p>
+                <button class="test-button" onclick="testMenuToggle()">Test Menu Toggle</button>
+                <button class="test-button" onclick="testMenuLinks()">Test Menu Links</button>
+            </div>
+
+            <!-- Expected Behavior -->
+            <div class="test-section">
+                <h3>✅ Expected Mobile Menu Behavior</h3>
+                <ul>
+                    <li><strong>Hamburger Button:</strong> Visible on screens ≤768px, hidden on larger screens</li>
+                    <li><strong>Menu Animation:</strong> Slides in from left when hamburger is clicked</li>
+                    <li><strong>Menu Items:</strong> All 7 navigation items should be visible and clickable</li>
+                    <li><strong>Menu Closing:</strong> Closes when clicking a link, outside the menu, or pressing Escape</li>
+                    <li><strong>Navigation:</strong> Each link should navigate to the correct page</li>
+                    <li><strong>Accessibility:</strong> Proper ARIA attributes and keyboard navigation</li>
+                </ul>
+            </div>
+
+            <!-- Troubleshooting -->
+            <div class="test-section">
+                <h3>🔧 Troubleshooting</h3>
+                <div class="test-instructions">
+                    <h4>If the mobile menu isn't working:</h4>
+                    <ol>
+                        <li><strong>Check screen width:</strong> Must be ≤768px for hamburger to appear</li>
+                        <li><strong>Check JavaScript:</strong> Ensure script.js is loading (check browser console)</li>
+                        <li><strong>Check CSS:</strong> Ensure styles.css is loading properly</li>
+                        <li><strong>Clear cache:</strong> Hard refresh the page (Ctrl+F5 or Cmd+Shift+R)</li>
+                        <li><strong>Check browser console:</strong> Look for any JavaScript errors</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Tall Section for Back-to-Top Testing -->
+            <div style="height: 2000px; background: linear-gradient(to bottom, #f0f0f0, #e0e0e0); padding: 20px; margin: 20px 0; border-radius: 8px;">
+                <h3>📏 Tall Section for Back-to-Top Testing</h3>
+                <p>Scroll down to test the back-to-top button functionality.</p>
+                <p>This section is intentionally tall to ensure the back-to-top button appears when scrolling.</p>
+                <div style="margin-top: 1000px;">
+                    <h4>Bottom of Tall Section</h4>
+                    <p>You should see a back-to-top button in the bottom-right corner.</p>
+                </div>
+            </div>
         </div>
-
-        <div class="debug-info">
-            <strong>Debug Info:</strong><br>
-            Screen width: <span id="screen-width"></span><br>
-            Hamburger visible: <span id="hamburger-visible"></span><br>
-            Menu state: <span id="menu-state"></span>
-        </div>
-
-        <h1>Test Content</h1>
-        <p>This is a test page to verify the mobile menu functionality. Resize your browser window to see the hamburger menu appear on mobile devices.</p>
-        
-        <h2>How to Test:</h2>
-        <ol>
-            <li>Open browser developer tools (F12)</li>
-            <li>Go to the "Console" tab</li>
-            <li>Resize your browser window to be narrow (less than 768px wide)</li>
-            <li>You should see the hamburger button appear</li>
-            <li>Click the hamburger button</li>
-            <li>Check the console for debug messages</li>
-            <li>The menu should slide in from the left</li>
-        </ol>
-
-        <h2>Expected Behavior:</h2>
-        <ul>
-            <li>✅ Hamburger button appears on mobile (≤768px)</li>
-            <li>✅ Clicking hamburger toggles menu</li>
-            <li>✅ Menu slides in from left</li>
-            <li>✅ Menu items are clickable</li>
-            <li>✅ Menu closes when clicking outside</li>
-            <li>✅ Menu closes with Escape key</li>
-        </ul>
-
-        <div style="height: 1000px; background: linear-gradient(45deg, #f0f0f0 25%, transparent 25%), linear-gradient(-45deg, #f0f0f0 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f0f0f0 75%), linear-gradient(-45deg, transparent 75%, #f0f0f0 75%); background-size: 20px 20px; background-position: 0 0, 0 10px, 10px -10px, -10px 0px; margin: 20px 0; padding: 20px; text-align: center;">
-            <p><strong>Scroll down to test back-to-top button</strong></p>
-            <p>This tall section helps test the back-to-top functionality</p>
-        </div>
-    </div>
+    </main>
 
     <!-- Back to Top Button -->
-    <button id="backToTop" class="back-to-top" aria-label="Back to top" title="Back to top">
-        <i class="fas fa-chevron-up"></i>
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
     </button>
 
     <script src="script.js"></script>
     <script>
-        // Additional debugging
+        // Additional debugging for mobile test page
         function updateDebugInfo() {
-            document.getElementById('screen-width').textContent = window.innerWidth + 'px';
-            document.getElementById('hamburger-visible').textContent = window.innerWidth <= 768 ? 'Yes' : 'No';
-            document.getElementById('menu-state').textContent = document.querySelector('.nav-menu').classList.contains('active') ? 'Open' : 'Closed';
+            const screenWidth = window.innerWidth;
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            document.getElementById('screen-width').textContent = screenWidth + 'px';
+            document.getElementById('hamburger-visible').textContent = hamburger ? (hamburger.style.display !== 'none' ? 'Yes' : 'No') : 'Not Found';
+            document.getElementById('menu-state').textContent = navMenu ? (navMenu.classList.contains('active') ? 'Open' : 'Closed') : 'Not Found';
+            document.getElementById('nav-links-count').textContent = navLinks.length;
+            document.getElementById('js-status').textContent = 'Loaded';
         }
 
-        window.addEventListener('resize', updateDebugInfo);
+        function testMenuToggle() {
+            const hamburger = document.querySelector('.hamburger');
+            if (hamburger) {
+                hamburger.click();
+                setTimeout(() => {
+                    updateDebugInfo();
+                }, 100);
+            } else {
+                alert('Hamburger button not found!');
+            }
+        }
+
+        function testMenuLinks() {
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            const linkInfo = Array.from(navLinks).map(link => `${link.textContent}: ${link.href}`).join('\n');
+            alert(`Found ${navLinks.length} navigation links:\n\n${linkInfo}`);
+        }
+
+        // Update debug info on load and resize
         window.addEventListener('load', updateDebugInfo);
+        window.addEventListener('resize', updateDebugInfo);
         
-        // Update debug info when menu state changes
-        const observer = new MutationObserver(updateDebugInfo);
-        observer.observe(document.querySelector('.nav-menu'), { attributes: true, attributeFilter: ['class'] });
+        // Update debug info every 2 seconds
+        setInterval(updateDebugInfo, 2000);
     </script>
 </body>
 </html>
