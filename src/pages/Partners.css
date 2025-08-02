@@ -1,0 +1,197 @@
+/* Partner Introduction */
+.partner-intro {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.partner-intro h2 {
+  margin-bottom: var(--space-lg);
+}
+
+/* Partner Services Grid */
+.partner-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--space-xl);
+  margin-top: var(--space-2xl);
+}
+
+.partner-service-card {
+  background: white;
+  padding: var(--space-xl);
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-md);
+}
+
+.partner-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  background: var(--gray-100);
+  border-radius: 0.5rem;
+  margin-bottom: var(--space-lg);
+  color: var(--primary);
+}
+
+.partner-service-card h3 {
+  color: var(--gray-900);
+  margin-bottom: var(--space-md);
+}
+
+.partner-service-card p {
+  color: var(--gray-600);
+  margin-bottom: var(--space-lg);
+  line-height: 1.6;
+}
+
+.partner-service-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.partner-service-card li {
+  position: relative;
+  padding-left: var(--space-lg);
+  margin-bottom: var(--space-sm);
+  color: var(--gray-700);
+}
+
+.partner-service-card li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--secondary);
+  font-weight: bold;
+}
+
+/* Benefits Grid */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-xl);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.benefit-item {
+  text-align: center;
+  padding: var(--space-lg);
+}
+
+.benefit-item h3 {
+  color: var(--gray-900);
+  margin-bottom: var(--space-sm);
+}
+
+.benefit-item p {
+  color: var(--gray-600);
+  line-height: 1.6;
+}
+
+/* Partner Types */
+.partner-types {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-xl);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.partner-type {
+  background: white;
+  padding: var(--space-xl);
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+
+.partner-type svg {
+  color: var(--primary);
+  margin-bottom: var(--space-md);
+}
+
+.partner-type h3 {
+  color: var(--gray-900);
+  margin-bottom: var(--space-sm);
+}
+
+.partner-type p {
+  color: var(--gray-600);
+  margin: 0;
+}
+
+/* Partner CTA */
+.partner-cta {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.partner-cta h2 {
+  color: white;
+  margin-bottom: var(--space-lg);
+}
+
+.partner-cta p {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2xl);
+  opacity: 0.95;
+}
+
+.partner-cta-actions {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.partners .cta-section {
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+  color: white;
+}
+
+.partners .btn-primary {
+  background: white;
+  color: var(--secondary);
+}
+
+.partners .btn-primary:hover {
+  background: var(--gray-100);
+}
+
+.partners .btn-secondary {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+}
+
+.partners .btn-secondary:hover {
+  background: white;
+  color: var(--secondary);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .partner-services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .benefits-grid,
+  .partner-types {
+    grid-template-columns: 1fr;
+  }
+
+  .partner-cta-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .partner-cta-actions .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}

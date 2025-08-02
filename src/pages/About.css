@@ -1,0 +1,152 @@
+/* Page Header */
+.page-header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  padding: var(--space-3xl) 0;
+  text-align: center;
+}
+
+.page-header h1 {
+  color: white;
+  font-size: var(--text-4xl);
+  margin-bottom: var(--space-md);
+}
+
+.page-subtitle {
+  font-size: var(--text-xl);
+  opacity: 0.9;
+}
+
+/* Mission Section */
+.mission-content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.mission-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  background: var(--gray-100);
+  border-radius: 50%;
+  margin-bottom: var(--space-xl);
+  color: var(--primary);
+}
+
+.mission-statement {
+  font-size: var(--text-2xl);
+  line-height: 1.6;
+  color: var(--gray-700);
+  font-weight: 500;
+}
+
+/* Story Section */
+.story-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.story-content p {
+  font-size: var(--text-lg);
+  line-height: 1.8;
+  color: var(--gray-700);
+  margin-bottom: var(--space-lg);
+}
+
+/* Differences Grid */
+.differences-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-xl);
+  margin-top: var(--space-2xl);
+}
+
+.difference-card {
+  text-align: center;
+  padding: var(--space-xl);
+}
+
+.difference-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: var(--secondary);
+  color: white;
+  border-radius: 50%;
+  margin-bottom: var(--space-lg);
+}
+
+.difference-card h3 {
+  color: var(--gray-900);
+  margin-bottom: var(--space-md);
+}
+
+.difference-card p {
+  color: var(--gray-600);
+  line-height: 1.6;
+}
+
+/* Values Section */
+.values-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-xl);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.value-item {
+  background: white;
+  padding: var(--space-xl);
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-sm);
+  border-top: 4px solid var(--accent);
+}
+
+.value-item h3 {
+  color: var(--gray-900);
+  margin-bottom: var(--space-sm);
+}
+
+.value-item p {
+  color: var(--gray-600);
+  margin: 0;
+}
+
+/* CTA Section */
+.about .cta-section {
+  background: var(--gray-900);
+  color: white;
+  text-align: center;
+}
+
+.about .cta-content h2 {
+  color: white;
+}
+
+.about .cta-content p {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-xl);
+  opacity: 0.9;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .page-header h1 {
+    font-size: var(--text-3xl);
+  }
+
+  .mission-statement {
+    font-size: var(--text-xl);
+  }
+
+  .differences-grid,
+  .values-list {
+    grid-template-columns: 1fr;
+  }
+}
